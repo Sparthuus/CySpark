@@ -9,5 +9,12 @@
     struct _tree* pRight;
     int           balance;
 } Tree;
-/*Function*/
+/*Function TreeAVL*/
   Tree* createAVL(int v);
+  Tree* rotateLeft(Tree* pRoot);
+  Tree* rotateRight(Tree* pRoot);
+  Tree* doublerotateLeft(Tree* pRoot);
+  Tree* doublerotateRight(Tree* pRoot);
+  Tree* balanceAVL(Tree* pRoot);
+  Tree* insertAVL(Tree* pRoot);
+  int searchAVL(Tree* pRoot);
