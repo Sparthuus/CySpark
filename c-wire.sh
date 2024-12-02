@@ -25,4 +25,8 @@ echo "Welcome user ! Feel free to use our programm. If you need any help you can
 
 function help(){
     echo "blablba"
+    case 
 }
+
+function compile(){
+    if (Computer
