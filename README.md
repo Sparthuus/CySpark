@@ -1,4 +1,4 @@
-# Project-Tri_C
+# Project Tri_C
 
 Project of Mathieu, Jude and Habilan. Year 2024-2025
 
