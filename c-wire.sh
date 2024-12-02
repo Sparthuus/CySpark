@@ -66,3 +66,11 @@ fi
 
 
 if [! -f CSV_FILE
+#we need max 4 args  min 3 
+
+#verify each case
+case $STATION in 
+hvb) ;;
+hva);;
+lv);;
+esac
