@@ -28,5 +28,31 @@ function help(){
     case 
 }
 
+
 function compile(){
-    if (Computer
+POWER_PLANT_ID=$1
+STATION_TYPE=$2
+CONSUMER_TYPE=$3
+CSV_FILE=$4
+
+if [ $STATION_TYPE != "hva" ] && [ $STATION_TYPE != "hvb" ] && [ $STATION_TYPE != "lv" ]; then
+    echo "Error : station type must be : hva, hvb, lv"
+    exit 1
+fi
+
+if  [ $CONSUMER_TYPE != "indiv" ] && [ $CONSUMER_TYPE != "all" ] && [ $CONSUMER_TYPE != "comp" ]; then
+    echo "Error : consummer type must be : all, indiv, comp"
+    exit 1
+fi
+
+if  { [[ ${CONSUMER_TYPE,,} == "indiv" ]] || [[ ${CONSUMER_TYPE,,} == "all" ]] } && [ ${STATION_TYPE,,} == "hvb" ]; then
+    echo "Error : you can't have indiv or all AND hvb"
+    exit 1
+fi
+
+if  { [[ ${CONSUMER_TYPE,,} == "indiv" ]] || [[ ${CONSUMER_TYPE,,} == "all" ]] } && [ ${STATION_TYPE,,} == "hva" ]; then
+    echo "Error : you can't have indiv or all AND hva"
+    exit 1
+fi
+
+if [! -f CSV_FILE
