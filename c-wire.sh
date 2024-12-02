@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#filter the line with one line 
+# tr trasform 
 # check nb args wich need an adjustment
 if [ "$#" -ne 1 ] ; then
     echo "Bad nb args !"
