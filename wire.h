@@ -9,3 +9,5 @@
     struct _tree* pRight;
     int           balance;
 } Tree;
+/*Function*/
+  Tree* createAVL(int v);
