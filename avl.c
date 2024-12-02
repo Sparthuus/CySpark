@@ -9,6 +9,18 @@ typedef struct _tree{
     int           balance;
 } Tree;
 
+Tree* createAVL(int v){
+    Tree* pNew = malloc(sizeof(Tree));
+    if(pNew == NULL){
+        exit(10);
+    }
+    pNew->value  = v;
+    pNew->pLeft  = NULL;
+    pNew->pRight = NULL;
+    pNew->balance= 0;
+    return pNew;
+}
+
 int min2(int a, int b){
     return a < b ? a : b;
 }
