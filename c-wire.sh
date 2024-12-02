@@ -30,10 +30,18 @@ function help(){
 
 
 function compile(){
-POWER_PLANT_ID=$1
+if ! [ -d "$1" ] ; then
+	echo"'$1' is not a directory"
+	exit 2
+fi
+
+# store directory
+
+PATH="$1"
 STATION=$2
 CONSUMER=$3
-CSV_FILE=$4
+POWER_PLANT_ID=$4
+
 
 if [ $STATION != "hva" ] && [ $STATION != "hvb" ] && [ $STATION != "lv" ]; then
     echo "Error : station type must be : hva, hvb, lv"
