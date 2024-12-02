@@ -206,6 +206,15 @@ Tree* removeAVL(Tree* pTree, int v){
     return pTree;
 }
 
+int comsumption(){
+    int result = 0;
+    return result;
+}
+
+void result(){
+    int comsumption();
+    printf("The comsumption is %d", result);
+}
 
 int main(){
 
@@ -243,7 +252,8 @@ int main(){
     printf("PREFIX2 : ");
     prefix(pAVL2);
     printf("\n");
-
+    int comsumption();
+    void result();
 
     
     
