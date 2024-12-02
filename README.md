@@ -1,3 +1,5 @@
-# Projet-Tri_C
+# Project-Tri_C
 
-Projet de Mathieu, Jude et Habilan année 2024-2025
+Project of Mathieu, Jude and Habilan. Year 2024-2025
+
+Welcome to our project named **"C-Wire"** currently in development...
