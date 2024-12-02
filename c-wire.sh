@@ -20,4 +20,5 @@ if ! [ -f "$file1" ] ; then
     exit 1
 fi
 
-echo "hello"
+echo "Hello !"
+echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
