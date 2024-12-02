@@ -22,3 +22,7 @@ fi
 
 echo "Hello !"
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
+
+function help(){
+    echo "blablba"
+}
