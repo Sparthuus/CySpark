@@ -28,16 +28,13 @@ Tree* rotateLeft(Tree* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
         exit(200);
     }
-    // update pointeurs
     Tree* pPivot  = pRoot->pRight;
     pRoot->pRight = pPivot->pLeft;
-    pPivot->pLeft = pRoot;
-    // update balance values
+    pPivot->pLeft = pRoot;      // update balance values
     int eqa = pRoot->balance;        
     int eqp = pPivot->balance;        
     pRoot->balance  = eqa - max2(eqp, 0) - 1;
     pPivot->balance = min3(eqa-2, eqa+eqp-2, eqp-1); 
-    // return new root
     pRoot = pPivot;
     return pRoot;
 }
