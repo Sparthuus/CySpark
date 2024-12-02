@@ -17,4 +17,4 @@
   Tree* doublerotateRight(Tree* pRoot);
   Tree* balanceAVL(Tree* pRoot);
   Tree* insertAVL(Tree* pRoot);
-  int searchAVL(Tree* pRoot);
+  int searchAVL(Tree* pRoot, int v);
