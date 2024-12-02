@@ -6,7 +6,106 @@ typedef struct _tree{
     int           value;
     struct _tree* pLeft;
     struct _tree* pRight;
+    int           balance;
 } Tree;
+
+int min2(int a, int b){
+    return a < b ? a : b;
+}
+int max2(int a, int b){
+    return a > b ? a : b;
+}
+int min3(int a, int b, int c){
+    return min2(a, min2(b, c));
+}
+int max3(int a, int b, int c){
+    return max2(a, max2(b, c));
+}
+
+Tree* rotateLeft(Tree* pRoot){
+    if(pRoot==NULL || pRoot->pRight == NULL){
+        exit(200);
+    }
+    // update pointeurs
+    Tree* pPivot  = pRoot->pRight;
+    pRoot->pRight = pPivot->pLeft;
+    pPivot->pLeft = pRoot;
+    // update balance values
+    int eqa = pRoot->balance;        
+    int eqp = pPivot->balance;        
+    pRoot->balance  = eqa - max2(eqp, 0) - 1;
+    pPivot->balance = min3(eqa-2, eqa+eqp-2, eqp-1); 
+    // return new root
+    pRoot = pPivot;
+    return pRoot;
+}
+Tree* rotateRight(Tree* pRoot){
+    if(pRoot==NULL || pRoot->pLeft == NULL){
+        exit(201);
+    }
+    // update pointeurs
+    Tree* pPivot  = pRoot->pLeft;
+    pRoot->pLeft = pPivot->pRight;
+    pPivot->pRight = pRoot;
+    // update balance values
+    int eqa = pRoot->balance;        
+    int eqp = pPivot->balance;        
+    pRoot->balance  = eqa - min2(eqp, 0) + 1;
+    pPivot->balance = max3(eqa+2, eqa+eqp+2, eqp+1); 
+    // return new root
+    pRoot = pPivot;
+    return pRoot;
+}
+
+Tree* doubleRotateLeft(Tree* pRoot){
+    if(pRoot==NULL || pRoot->pRight == NULL){
+        exit(202);
+    }
+    pRoot->pRight = rotateRight(pRoot->pRight);
+    return rotateLeft(pRoot);
+}
+Tree* doubleRotateRight(Tree* pRoot){
+    if(pRoot==NULL || pRoot->pLeft == NULL){
+        exit(203);
+    }
+    pRoot->pLeft = rotateLeft(pRoot->pLeft);
+    return rotateRight(pRoot);
+}
+Tree* balanceAVL(Tree* pRoot){
+    if(pRoot == NULL){
+        exit(205);
+    }
+    
+    if(pRoot->balance >= 2){
+        if(pRoot->pRight == NULL){
+            exit(206);
+        }
+        if(pRoot->pRight->balance >= 0){
+            // LEFT SIMPLE
+            pRoot = rotateLeft(pRoot);
+        }        
+        else{
+            // LEFT DOUBLE
+            pRoot = doubleRotateLeft(pRoot);
+        }        
+    }
+    else if(pRoot->balance <= -2){
+        if(pRoot->pLeft == NULL){
+            exit(207);
+        }
+        if(pRoot->pLeft->balance <= 0){
+            // RIGHT SIMPLE
+            pRoot = rotateLeft(pRoot);
+        }        
+        else{
+            // RIGHT DOUBLE
+            pRoot = doubleRotateRight(pRoot);                        
+        }
+    }
+    return pRoot;
+}
+
+
 
 Tree* createAVL(int v){
     Tree* pNew = malloc(sizeof(Tree));
@@ -16,6 +115,7 @@ Tree* createAVL(int v){
     pNew->value  = v;
     pNew->pLeft  = NULL;
     pNew->pRight = NULL;
+    pNew->balance= 0;
     return pNew;
 }
 
@@ -57,14 +157,14 @@ Tree* insertAVL(Tree* pTree, int v){
 void infix(Tree* p){
     if(p!=NULL){
         infix(p->pLeft);
-        printf("[%02d]", p->value);
+        printf("[%02d(%2d)]", p->value, p->balance);
         infix(p->pRight);
     }
 }
 
 void prefix(Tree* p){
     if(p!=NULL){
-        printf("[%02d]", p->value);
+        printf("[%02d(%2d)]", p->value, p->balance);
         prefix(p->pLeft);
         prefix(p->pRight);
     }
@@ -118,77 +218,50 @@ Tree* removeAVL(Tree* pTree, int v){
     return pTree;
 }
 
-int isBST_rec(Tree* p, int* pPrevious){
-    if(p != NULL){
-        // check left child
-        if( isBST_rec(p->pLeft, pPrevious) ){
-            // check current node value
-            if( p->value < *pPrevious ){
-                return 0;
-            }
-            // if correct until now...
-            // ...update previous node value 
-            *pPrevious = p->value;
-            // check right child
-            return isBST_rec(p->pRight, pPrevious);
-        }
-    }    
-    else{
-        return 1;
-    }
-}
-
-int isBST(Tree* p){
-    int value = -1;
-    if(p == NULL){
-        return 0;
-    }
-    else{    
-        return isBST_rec(p, &value);
-    }
-}
-
 
 int main(){
 
-    Tree* pAVL = NULL;
+    Tree* pAVL1 = NULL;
+    Tree* pAVL2 = NULL;
 
     // set the seed value 
     srand(0);
 
-    for(int i=0;i<15;i++){
-        int v = rand()%100 + 1;
-        printf("Insert %d \n", v);
-        pAVL  = insertAVL(pAVL, v);
-    }
+    pAVL1 = insertAVL(pAVL1, 1);
+    pAVL1 = insertAVL(pAVL1, 2);
+    pAVL1 = insertAVL(pAVL1, 3);
 
-    infix(pAVL);
+    pAVL1 = rotateLeft(pAVL1);
+
+    pAVL2 = insertAVL(pAVL2, 3);
+    pAVL2 = insertAVL(pAVL2, 2);
+    pAVL2 = insertAVL(pAVL2, 1);
+
+    pAVL2 = rotateRight(pAVL2);
+
+
+    printf("INFIX1 : ");
+    infix(pAVL1);
     printf("\n");
 
-    printf("root = [%02d] \n", pAVL->value);
-    printf("%d\n", isBST(pAVL) );
+    printf("PREFIX1 : ");
+    prefix(pAVL1);
+    printf("\n");
 
-    pAVL->value = 77;
-    printf("root = [%02d] \n", pAVL->value);
-    printf("%d\n", isBST(pAVL) );
+    printf("INFIX2 : ");
+    infix(pAVL2);
+    printf("\n");
 
-    pAVL->value = 88;
-    printf("root = [%02d] \n", pAVL->value);
-    printf("%d\n", isBST(pAVL) );
+    printf("PREFIX2 : ");
+    prefix(pAVL2);
+    printf("\n");
 
 
-
-/*
-    printf("%d \n", searchAVL(pAVL, 36) );
-    printf("%d \n", searchAVL(pAVL, 63) );
-    printf("%d \n", searchAVL(pAVL, 44) );
-*/
     
     
     
     return 0;
 }
-
 
 
 
