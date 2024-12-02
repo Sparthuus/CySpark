@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-typedef struct _tree{
-    int           value;
-    struct _tree* pLeft;
-    struct _tree* pRight;
-    int           balance;
-} Tree;
+#include "wire.h"
 
 Tree* createAVL(int v){
     Tree* pNew = malloc(sizeof(Tree));
