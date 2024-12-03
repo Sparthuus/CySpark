@@ -94,7 +94,7 @@ Tree* balanceAVL(Tree* pRoot){
         }
         if(pRoot->pLeft->balance <= 0){
             // RIGHT SIMPLE
-            pRoot = rotateLeft(pRoot);
+           pRoot = rotateRight(pRoot);
         }        
         else{
             // RIGHT DOUBLE
