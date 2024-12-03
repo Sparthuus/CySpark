@@ -39,12 +39,12 @@ fi
 
 # store directory
 
-PATH="$1"
+PATH="$1" # take de value of $1 and apply it to PATH
 STATION=$2
 CONSUMER=$3
 POWER_PLANT_ID=$4
 
-
+# Checking all the parameters
 if [ $STATION != "hva" ] && [ $STATION != "hvb" ] && [ $STATION != "lv" ]; then
     echo "Error : station type must be : hva, hvb, lv"
     exit 1
