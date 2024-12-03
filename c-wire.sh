@@ -2,8 +2,8 @@
 #filter the line with one line 
 # tr trasform 
 # check nb args wich need an adjustment
-if [ "$#" -ne 1 ] ; then
-    echo "Bad nb args !"
+if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
+    echo "Bad number of arguments!"
     exit 1
 fi
 
@@ -24,7 +24,9 @@ echo "Hello !"
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
 function help(){
-    echo "blablba"
+    echo "first type the path of your "
+    echo" choose the type of statio \n type <hvb> or <hva> or <lv>"
+    echo " wich kind  you want"
     case 
 }
 
@@ -68,9 +70,12 @@ fi
 if [! -f CSV_FILE
 #we need max 4 args  min 3 
 
-#verify each case
+#make before differant function for each
+#use cut to only have the column needed
 case $STATION in 
 hvb) ;;
 hva);;
 lv);;
 esac
+
+
