@@ -39,7 +39,7 @@ fi
 
 # store directory
 
-PATH="$1" # take de value of $1 and apply it to PATH
+PATH="$1" # take value of $1 and apply it to PATH
 STATION=$2
 CONSUMER=$3
 POWER_PLANT_ID=$4
