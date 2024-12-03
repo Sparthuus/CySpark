@@ -72,6 +72,7 @@ if [! -f CSV_FILE
 
 #make before differant function for each
 #use cut to only have the column needed
+#use tail -n+1 to cut the first line
 case $STATION in 
 hvb) ;;
 hva);;
