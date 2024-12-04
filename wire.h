@@ -3,17 +3,23 @@
   #include <stdlib.h>
   #include <time.h>
 /*Useful*/
+
+
+  typedef struct _comsumer{
+  int company;
+  int all;
+  int individuam:
+
+  } ConsumerType;
   typedef struct _tree{
-    int           value;
+    char indentifier[10];
+    ConsumerType         consumer;
+    int           capacity;
     struct _tree* pLeft;
     struct _tree* pRight;
     int           balance;
 } Tree;
-typedef struct _HB{
-  
 
-
-}HVB;
 /*Function TreeAVL*/
   Tree* createAVL(int v);
   Tree* rotateLeft(Tree* pRoot);
