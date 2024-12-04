@@ -9,6 +9,11 @@
     struct _tree* pRight;
     int           balance;
 } Tree;
+typedef struct _HB{
+  
+
+
+}HVB;
 /*Function TreeAVL*/
   Tree* createAVL(int v);
   Tree* rotateLeft(Tree* pRoot);
