@@ -1,13 +1,12 @@
 #include "wire.h"
 
-Tree* createAVL(int v, ConsumerType a, int i, int c){
+Tree* createAVL(ConsumerType a, int i, int c){
     Tree* pNew = malloc(sizeof(Tree));
     if(pNew == NULL){
         exit(10);
     }
-    pNew->value  = v;
     pNew->ConsumerType = a;
-    pNew->indentifer = i;
+    pNew->id= i;
     pNew->capacity = c;
     pNew->pLeft  = NULL;
     pNew->pRight = NULL;
@@ -111,10 +110,10 @@ int searchAVL(Tree* pTree, int v){
     if(pTree == NULL){
         return 0;
     }
-    else if(pTree->value == v){
+    else if(pTree->id == v){
         return 1;
     }
-    else if(v > pTree->value){
+    else if(v > pTree->id){
         return searchAVL(pTree->pRight, v);
     }
     else{
