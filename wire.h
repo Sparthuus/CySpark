@@ -8,12 +8,13 @@
   typedef struct _comsumer{
   int company;
   int all;
-  int individuam:
+  int individual:
 
   } ConsumerType;
   typedef struct _tree{
-    int id = 0;
-    ConsumerType         consumer;
+    int id;
+    ConsumerType         consumer; 
+    int consumption;
     int           capacity;
     struct _tree* pLeft;
     struct _tree* pRight;
