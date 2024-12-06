@@ -12,7 +12,7 @@
 
   } ConsumerType;
   typedef struct _tree{
-    int indentifier;
+    int id = 0;
     ConsumerType         consumer;
     int           capacity;
     struct _tree* pLeft;
