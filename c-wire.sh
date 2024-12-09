@@ -62,6 +62,8 @@ fi
 
 
 
+##grep  filtre pr lesligne hcb et comp ex puis si on a - metrtre 0 puis finir par faire la somme des capa et des conoso
+
 
 
 
