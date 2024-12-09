@@ -5,15 +5,12 @@
 /*Useful*/
 
 
-  typedef struct _comsumer{
-  int company;
-  int all;
-  int individual:
 
-  } ConsumerType;
   typedef struct _tree{
     int id;
-    ConsumerType         consumer; 
+     int station; //1=hvb 2=hva 3=lv
+     int Consumer;//1=comp 2=indiv 3=all
+    
     int consumption;
     int           capacity;
     struct _tree* pLeft;
