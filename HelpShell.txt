@@ -1,1 +1,5 @@
-
+Expliquer comment le script Shell fonction
+Envoyer le chemin du fichier
+Le deuxième argument hva hvb ou lv
+Préciser que, pour que hva hvb on a que company
+Pour les lv on peu tout avoir
