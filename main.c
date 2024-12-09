@@ -1,4 +1,4 @@
-#include "wire.h"
+#include "avl.h"
 
 int main(){
   int v1,v2,v3,v4; //v1 = id, v2 = 
@@ -6,7 +6,7 @@ int main(){
   int sum3 = 0;
   while( scanf("%d,%d,%d\n", &v1, &v2, &v3, ) == 3){
 
-      Tree *pRoot = create
+      AVL *pRoot = createAVL(int i, long long c, long long l);
 
   }
   
