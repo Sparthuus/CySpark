@@ -1,6 +1,6 @@
 #include "wire.h"
 
-Tree* createAVL(ConsumerType a, int i, int c){
+Tree* createAVL(ConsumerType a, int i, long long c){
     Tree* pNew = malloc(sizeof(Tree));
     if(pNew == NULL){
         exit(10);
