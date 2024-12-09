@@ -1,5 +1,10 @@
-Expliquer comment le script Shell fonction
+Expliquer comment le script Shell fonctionne
 Envoyer le chemin du fichier
 Le deuxième argument hva hvb ou lv
 Préciser que, pour que hva hvb on a que company
 Pour les lv on peu tout avoir
+Le dernier argument est en option permet de trier les information par numéro de centrale
+
+
+
+
