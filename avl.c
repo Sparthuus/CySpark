@@ -42,6 +42,7 @@ Tree* rotateLeft(Tree* pRoot){
     pRoot = pPivot;
     return pRoot;
 }
+
 Tree* rotateRight(Tree* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
         exit(201);
@@ -67,6 +68,7 @@ Tree* doubleRotateLeft(Tree* pRoot){
     pRoot->pRight = rotateRight(pRoot->pRight);
     return rotateLeft(pRoot);
 }
+
 Tree* doubleRotateRight(Tree* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
         exit(203);
@@ -74,6 +76,7 @@ Tree* doubleRotateRight(Tree* pRoot){
     pRoot->pLeft = rotateLeft(pRoot->pLeft);
     return rotateRight(pRoot);
 }
+
 Tree* balanceAVL(Tree* pRoot){
     if(pRoot == NULL){
         exit(205);
