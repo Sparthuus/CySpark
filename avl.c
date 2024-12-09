@@ -156,16 +156,6 @@ void infix(AVL* p){
     }
 }
 
-void prefix(AVL* p){
-    if(p!=NULL){
-        printf("[%02d(%2d)]", p->value, p->balance);
-        prefix(p->pLeft);
-        prefix(p->pRight);
-    }
-}
-
-
-
 int comsumption(){
     int result = 0;
     return result;
