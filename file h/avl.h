@@ -11,11 +11,11 @@
     int balance;
 } AVL;
 
-  AVL* createAVL(int i, long long c, long long l);
+  AVL* createAVL(int i, int c, int l);
   AVL* rotateLeft(AVL* pRoot);
   AVL* rotateRight(AVL* pRoot);
   AVL* doublerotateLeft(AVL* pRoot);
   AVL* doublerotateRight(AVL* pRoot);
   AVL* balanceAVL(AVL* pRoot);
-  AVL* insertAVL(AVL* pAVL, int i, long long c, long long l, int* h);
-  int searchAVL(AVL* pAVL, int i, long long c, long long l);
+  AVL* insertAVL(AVL* pAVL, int i, int c, int l, int* h);
+  int searchAVL(AVL* pAVL, int i);
