@@ -155,10 +155,14 @@ void infix(AVL* p){
 
 int comsumption(){
     int result = 0;
+    result += searchAVL(AVL* pAVL, i, c);
     return result;
 }
 
-void result(){
+void result(AVL* pAVL, int i, long long c){
+    for (int i = 0; i < depth; i++) {
+    printf("%d (%lld)\n", pAVL->id, pAVL->capacity);
+    }
     int comsumption();
     printf("The comsumption is %d", result);
 }
