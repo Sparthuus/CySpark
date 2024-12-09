@@ -110,7 +110,7 @@ AVL* balanceAVL(AVL* pRoot){
     return pRoot;
 }
 
-int searchAVL(AVL* pAVL, int i, int c, int l){
+int searchAVL(AVL* pAVL, int i){
     if(pAVL == NULL){
         return 0;
     }
@@ -118,10 +118,10 @@ int searchAVL(AVL* pAVL, int i, int c, int l){
         return 1;
     }
     else if(i > pAVL->id){
-        return searchAVL(pAVL->pRight, i, c, l);
+        return searchAVL(pAVL->pRight, i);
     }
     else{
-        return searchAVL(pAVL->pLeft, i, c, l);
+        return searchAVL(pAVL->pLeft, i);
     }
 }
 
