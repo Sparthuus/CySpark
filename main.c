@@ -6,7 +6,7 @@ int main(){
   int sum3 = 0;
   while( scanf("%d,%d,%d\n", &v1, &v2, &v3, ) == 3){
 
-
+      Tree *pRoot = create
 
   }
   
