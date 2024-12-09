@@ -1,7 +1,7 @@
 #include "wire.h"
 
-Tree* createAVL(ConsumerType a, int i, long long c){
-    Tree* pNew = malloc(sizeof(Tree));
+AVL* createAVL(ConsumerType a, int i, long long c){
+    AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
         exit(10);
     }
@@ -27,11 +27,11 @@ int max3(int a, int b, int c){
     return max2(a, max2(b, c));
 }
 
-Tree* rotateLeft(Tree* pRoot){
+AVL* rotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
         exit(200);
     }
-    Tree* pPivot  = pRoot->pRight;
+    AVL* pPivot  = pRoot->pRight;
     pRoot->pRight = pPivot->pLeft;
     pPivot->pLeft = pRoot;      // update balance values
     int eqa = pRoot->balance;        
@@ -42,12 +42,12 @@ Tree* rotateLeft(Tree* pRoot){
     return pRoot;
 }
 
-Tree* rotateRight(Tree* pRoot){
+AVL* rotateRight(AVL* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
         exit(201);
     }
     // update pointeurs
-    Tree* pPivot  = pRoot->pLeft;
+    AVL* pPivot  = pRoot->pLeft;
     pRoot->pLeft = pPivot->pRight;
     pPivot->pRight = pRoot;
     // update balance values
@@ -60,7 +60,7 @@ Tree* rotateRight(Tree* pRoot){
     return pRoot;
 }
 
-Tree* doubleRotateLeft(Tree* pRoot){
+AVL* doubleRotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
         exit(202);
     }
@@ -68,7 +68,7 @@ Tree* doubleRotateLeft(Tree* pRoot){
     return rotateLeft(pRoot);
 }
 
-Tree* doubleRotateRight(Tree* pRoot){
+AVL* doubleRotateRight(AVL* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
         exit(203);
     }
@@ -76,7 +76,7 @@ Tree* doubleRotateRight(Tree* pRoot){
     return rotateRight(pRoot);
 }
 
-Tree* balanceAVL(Tree* pRoot){
+AVL* balanceAVL(AVL* pRoot){
     if(pRoot == NULL){
         exit(205);
     }
@@ -110,45 +110,45 @@ Tree* balanceAVL(Tree* pRoot){
     return pRoot;
 }
 
-int searchAVL(Tree* pTree, int v){
-    if(pTree == NULL){
+int searchAVL(AVL* pAVL, int v){
+    if(pAVL == NULL){
         return 0;
     }
-    else if(pTree->id == v){
+    else if(pAVL->id == v){
         return 1;
     }
-    else if(v > pTree->id){
-        return searchAVL(pTree->pRight, v);
+    else if(v > pAVL->id){
+        return searchAVL(pAVL->pRight, v);
     }
     else{
-        return searchAVL(pTree->pLeft, v);
+        return searchAVL(pAVL->pLeft, v);
     }
 }
 
-Tree* insertAVL(Tree* pTree, int v, int *h){
-    if(pTree == NULL){
+AVL* insertAVL(AVL* pAVL, int v, int *h){
+    if(pAVL == NULL){
         // insert
         *h = 1;
-        pTree = createAVL(v);
-        if(pTree == NULL){
+        pAVL = createAVL(v);
+        if(pAVL == NULL){
             exit(15);
         }
     }    
-    else if(v < pTree->value){
-        pTree->pLeft = insertAVL(pTree->pLeft, v);
+    else if(v < pAVL->value){
+        pAVL->pLeft = insertAVL(pAVL->pLeft, v);
         *h = -*h;
     }
-    else if(v > pTree->value){
-        pTree->pRight = insertAVL(pTree->pRight, v);
+    else if(v > pAVL->value){
+        pAVL->pRight = insertAVL(pAVL->pRight, v);
     }
     else{
         *h = 0:
-        return pTree;
+        return pAVL;
     }
-    return pTree;
+    return pAVL;
 }
 
-void infix(Tree* p){
+void infix(AVL* p){
     if(p!=NULL){
         infix(p->pLeft);
         printf("[%02d(%2d)]", p->value, p->balance);
@@ -156,7 +156,7 @@ void infix(Tree* p){
     }
 }
 
-void prefix(Tree* p){
+void prefix(AVL* p){
     if(p!=NULL){
         printf("[%02d(%2d)]", p->value, p->balance);
         prefix(p->pLeft);
@@ -178,8 +178,8 @@ void result(){
 
 int main(){
 
-    Tree* pAVL1 = NULL;
-    Tree* pAVL2 = NULL;
+    AVL* pAVL1 = NULL;
+    AVL* pAVL2 = NULL;
 
     // set the seed value 
     srand(0);
@@ -220,16 +220,3 @@ int main(){
     
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
