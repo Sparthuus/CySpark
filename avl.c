@@ -1,6 +1,6 @@
 #include "avl.h"
 
-AVL* createAVL(int i, long long c, long long l){
+AVL* createAVL(int i, int c, int l){
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
         exit(10);
@@ -110,7 +110,7 @@ AVL* balanceAVL(AVL* pRoot){
     return pRoot;
 }
 
-int searchAVL(AVL* pAVL, int i, long long c, long long l){
+int searchAVL(AVL* pAVL, int i, int c, int l){
     if(pAVL == NULL){
         return 0;
     }
@@ -125,7 +125,7 @@ int searchAVL(AVL* pAVL, int i, long long c, long long l){
     }
 }
 
-AVL* insertAVL(AVL* pAVL, int i, long long c, long long c, int *h){
+AVL* insertAVL(AVL* pAVL, int i, int c, int c, int *h){
     if(pAVL == NULL){
         // insert
         *h = 1;
