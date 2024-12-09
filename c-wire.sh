@@ -2,33 +2,28 @@
 #filter the line with one line 
 # tr trasform 
 # check nb args wich need an adjustment
+if [ $1 == "-h"]; then
+    cat HelpShell.txt
+fi
 if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
     echo "Bad number of arguments!"
+    cat HelpShell.txt
     exit 1
 fi
 
-# check arg is a directory( if needed )
-if ! [ -d "$1" ] ; then
-    echo "'$1' is not a directory !"
-    exit 2
-fi
+
 
 file1=$1
 
 if ! [ -f "$file1" ] ; then
     echo "$file1 does not exist !"
+    cat HelpShell.txt
     exit 1
 fi
 
 echo "Hello !"
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
-function help(){
-    echo "first type the path of your "
-    echo" choose the type of statio \n type <hvb> or <hva> or <lv>"
-    echo " wich kind  you want"
-    case 
-}
 
 
 function compile(){
@@ -68,7 +63,7 @@ fi
 
 
 if [! -f CSV_FILE
-#we need max 4 args  min 3 
+
 
 #make before differant function for each
 #use cut to only have the column needed
