@@ -1,4 +1,4 @@
-#include "wire.h"
+#include "avl.h"
 
 AVL* createAVL(int i, long long c, long long l){
     AVL* pNew = malloc(sizeof(AVL));
