@@ -125,9 +125,10 @@ int searchAVL(Tree* pTree, int v){
     }
 }
 
-Tree* insertAVL(Tree* pTree, int v){
+Tree* insertAVL(Tree* pTree, int v, int *h){
     if(pTree == NULL){
         // insert
+        *h = 1;
         pTree = createAVL(v);
         if(pTree == NULL){
             exit(15);
@@ -135,12 +136,14 @@ Tree* insertAVL(Tree* pTree, int v){
     }    
     else if(v < pTree->value){
         pTree->pLeft = insertAVL(pTree->pLeft, v);
+        *h = -*h;
     }
     else if(v > pTree->value){
         pTree->pRight = insertAVL(pTree->pRight, v);
     }
     else{
-        // do nothing when duplicated !!
+        *h = 0:
+        return pTree;
     }
     return pTree;
 }
