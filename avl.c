@@ -125,21 +125,18 @@ int searchAVL(AVL* pAVL, int v){
     }
 }
 
-AVL* insertAVL(AVL* pAVL, int v, int *h){
+AVL* insertAVL(AVL* pAVL, int i, long long c, int *h){
     if(pAVL == NULL){
         // insert
         *h = 1;
-        pAVL = createAVL(v);
-        if(pAVL == NULL){
-            exit(15);
-        }
+        return createAVL(ConsumerType a, int i, long long c);
     }    
-    else if(v < pAVL->value){
-        pAVL->pLeft = insertAVL(pAVL->pLeft, v);
+    if (i < pAVL->id){
+        pAVL->pLeft = insertAVL(pAVL->pLeft, i, c, h);
         *h = -*h;
     }
-    else if(v > pAVL->value){
-        pAVL->pRight = insertAVL(pAVL->pRight, v);
+    else if(i > pAVL->id){
+        pAVL->pRight = insertAVL(pAVL->pRight, i, c, h);
     }
     else{
         *h = 0:
