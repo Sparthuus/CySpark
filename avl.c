@@ -196,9 +196,6 @@ int main(){
     infix(pAVL2);
     printf("\n");
 
-    printf("PREFIX2 : ");
-    prefix(pAVL2);
-    printf("\n");
     int comsumption();
     void result();
 
