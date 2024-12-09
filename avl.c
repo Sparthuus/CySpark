@@ -114,7 +114,7 @@ int searchAVL(AVL* pAVL, int i, long long c){
     if(pAVL == NULL){
         return 0;
     }
-    else if(pAVL->id == i){
+    if(pAVL->id == i){
         return 1;
     }
     else if(i > pAVL->id){
