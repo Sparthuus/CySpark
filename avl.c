@@ -188,7 +188,8 @@ Tree* suppMinAVL(Tree* pTree, int *h, int *pe){
     }
     return pTree;
 }
-/*Tree* suppMax(Tree* pTree, int* pValue ){
+
+Tree* suppMax(Tree* pTree, int* pValue ){
     if(pTree == NULL || pValue == NULL){
         exit(100);
     }
@@ -206,12 +207,17 @@ Tree* suppMinAVL(Tree* pTree, int *h, int *pe){
         free(pRemove);
     }
     return pTree;
-} */
+} 
 
-Tree* removeAVL(Tree* pTree, int v){
-    if(pTree != NULL){
+Tree* removeAVL(Tree* pTree, int v, int* h){
+    if(pTree == NULL){
+        *h = 0;
+        return pTree;
+    }
+    else{
         if(v < pTree->value){
             pTree->pLeft = removeAVL(pTree->pLeft, v);
+            *h = -*h;
         }
         else if(v > pTree->value){
             pTree->pRight = removeAVL(pTree->pRight, v);
@@ -220,6 +226,7 @@ Tree* removeAVL(Tree* pTree, int v){
             if(pTree->pLeft != NULL && pTree->pRight != NULL){
                 // suppmin / suppmax
                 pTree->pLeft = suppMax(pTree->pLeft, &(pTree->value) );
+                pTree->pRight = suppMin(pTree->pRight, &(pTree->value) );
             }
             else{
                 // remove directly                
