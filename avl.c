@@ -164,7 +164,7 @@ void prefix(Tree* p){
     }
 }
 
-Tree* suppMinAVL(Tree* pTree, int *h, int *pe){
+/*Tree* suppMinAVL(Tree* pTree, int *h, int *pe){
     Tree* temp;
     if (pTree->pLeft == NULL){                   
         *pe = pTree->value; 
@@ -241,7 +241,7 @@ Tree* removeAVL(Tree* pTree, int v, int* h){
         }    
     }
     return pTree;
-}
+} */
 
 int comsumption(){
     int result = 0;
