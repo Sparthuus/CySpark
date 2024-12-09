@@ -78,7 +78,7 @@ AVL* doubleRotateRight(AVL* pRoot){
 
 AVL* balanceAVL(AVL* pRoot){
     if(pRoot == NULL){
-        return createAVL(ConsumerType a, int i, long long c);
+        exit(205);
     }
     
     if(pRoot->balance >= 2){
