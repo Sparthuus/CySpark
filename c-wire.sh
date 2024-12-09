@@ -2,6 +2,9 @@
 #filter the line with one line 
 # tr trasform 
 # check nb args wich need an adjustment
+
+echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
+
 if [ $1 == "-h"]; then
     cat HelpShell.txt
 fi
@@ -21,11 +24,6 @@ if ! [ -f "$file1" ] ; then
     cat HelpShell.txt
     exit 1
 fi
-
-echo "Hello !"
-echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
-
-
 
 function compile(){
 if ! [ -d "$1" ] ; then
