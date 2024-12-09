@@ -1,11 +1,11 @@
 #include "wire.h"
 
-AVL* createAVL(ConsumerType a, int i, long long c){
+AVL* createAVL(int i, long long c, long long l){
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
         exit(10);
     }
-    pNew->ConsumerType = a;
+    pNew->load = l;
     pNew->id= i;
     pNew->capacity = c;
     pNew->pLeft  = NULL;
@@ -110,7 +110,7 @@ AVL* balanceAVL(AVL* pRoot){
     return pRoot;
 }
 
-int searchAVL(AVL* pAVL, int i, long long c){
+int searchAVL(AVL* pAVL, int i, long long c, long long l){
     if(pAVL == NULL){
         return 0;
     }
@@ -118,25 +118,25 @@ int searchAVL(AVL* pAVL, int i, long long c){
         return 1;
     }
     else if(i > pAVL->id){
-        return searchAVL(pAVL->pRight, i, c);
+        return searchAVL(pAVL->pRight, i, c, l);
     }
     else{
-        return searchAVL(pAVL->pLeft, i, c);
+        return searchAVL(pAVL->pLeft, i, c, l);
     }
 }
 
-AVL* insertAVL(AVL* pAVL, int i, long long c, int *h){
+AVL* insertAVL(AVL* pAVL, int i, long long c, long long c, int *h){
     if(pAVL == NULL){
         // insert
         *h = 1;
-        return createAVL(ConsumerType a, int i, long long c);
+        return createAVL(i, c, l);
     }    
     if (i < pAVL->id){
-        pAVL->pLeft = insertAVL(pAVL->pLeft, i, c, h);
+        pAVL->pLeft = insertAVL(pAVL->pLeft, i, c, l, h);
         *h = -*h;
     }
     else if(i > pAVL->id){
-        pAVL->pRight = insertAVL(pAVL->pRight, i, c, h);
+        pAVL->pRight = insertAVL(pAVL->pRight, i, c, l, h);
     }
     else{
         *h = 0:
