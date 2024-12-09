@@ -62,7 +62,7 @@ fi
 
 
 
-##grep  filtre pr lesligne hcb et comp ex puis si on a - metrtre 0 puis finir par faire la somme des capa et des conoso
+##grep  filtre pr lesligne hvb et comp ex puis si on a - metrtre 0 puis finir par faire la somme des capa et des conoso finir avezc |./exec
 
 
 
@@ -70,9 +70,9 @@ fi
 #make before differant function for each
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
-#
+#tail -n+1
 case $STATION in 
-hvb) ;;
+hvb);;
 hva);;
 lv);;
 esac
