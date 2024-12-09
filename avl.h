@@ -1,15 +1,11 @@
 /*Library*/
   #include <stdio.h>
   #include <stdlib.h>
-  #include <time.h>
-/*Useful*/
 
-
-
-  typedef struct _tree{
+  typedef struct _avl{
     int id;
-    int consumption;
-    int           capacity;
+    int load;
+    int capacity;
     struct _tree* pLeft;
     struct _tree* pRight;
     int           balance;
