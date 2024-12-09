@@ -1,7 +1,8 @@
 #!/bin/bash
 #filter the line with one line 
 # tr trasform 
-# check nb args wich need an adjustment
+# for the case of an 4 argument to treat
+#
 
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
@@ -36,7 +37,7 @@ fi
 PATH="$1" # take value of $1 and apply it to PATH
 STATION=$2
 CONSUMER=$3
-POWER_PLANT_ID=$4
+POWER_PLANT_ID=$4 # qu'il faudra raouter dans le ficher créé
 
 # Checking all the parameters
 if [ $STATION != "hva" ] && [ $STATION != "hvb" ] && [ $STATION != "lv" ]; then
@@ -61,12 +62,13 @@ fi
 
 
 
-if [! -f CSV_FILE
+
 
 
 #make before differant function for each
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
+#
 case $STATION in 
 hvb) ;;
 hva);;
