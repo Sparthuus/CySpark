@@ -125,7 +125,7 @@ int searchAVL(AVL* pAVL, int i){
     }
 }
 
-AVL* insertAVL(AVL* pAVL, int i, int c, int c, int *h){
+AVL* insertAVL(AVL* pAVL, int i, int c, int l, int *h){
     if(pAVL == NULL){
         // insert
         *h = 1;
