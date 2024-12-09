@@ -6,17 +6,16 @@
     int id;
     int load;
     int capacity;
-    struct _tree* pLeft;
-    struct _tree* pRight;
-    int           balance;
-} Tree;
+    struct _avl* pLeft;
+    struct _avl* pRight;
+    int balance;
+} AVL;
 
-/*Function TreeAVL*/
-  Tree* createAVL(int v);
-  Tree* rotateLeft(Tree* pRoot);
-  Tree* rotateRight(Tree* pRoot);
-  Tree* doublerotateLeft(Tree* pRoot);
-  Tree* doublerotateRight(Tree* pRoot);
-  Tree* balanceAVL(Tree* pRoot);
-  Tree* insertAVL(Tree* pRoot);
-  int searchAVL(Tree* pRoot, int v);
+  AVL* createAVL(int i, long long c, long long l);
+  AVL* rotateLeft(AVL* pRoot);
+  AVL* rotateRight(AVL* pRoot);
+  AVL* doublerotateLeft(AVL* pRoot);
+  AVL* doublerotateRight(AVL* pRoot);
+  AVL* balanceAVL(AVL* pRoot);
+  AVL* insertAVL(AVL* pAVL, int i, long long c, long long l, int* h);
+  int searchAVL(AVL* pAVL, int i, long long c, long long l);
