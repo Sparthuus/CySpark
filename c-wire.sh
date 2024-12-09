@@ -5,6 +5,7 @@
 if [ $1 == "-h"]; then
     cat HelpShell.txt
 fi
+
 if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
     echo "Bad number of arguments!"
     cat HelpShell.txt
