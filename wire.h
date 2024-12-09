@@ -8,9 +8,6 @@
 
   typedef struct _tree{
     int id;
-     int station; //1=hvb 2=hva 3=lv
-     int Consumer;//1=comp 2=indiv 3=all
-    
     int consumption;
     int           capacity;
     struct _tree* pLeft;
