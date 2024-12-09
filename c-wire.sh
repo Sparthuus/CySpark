@@ -50,7 +50,7 @@ if [ $STATION != "hva" ] && [ $STATION != "hvb" ] && [ $STATION != "lv" ]; then
     exit 1
 fi
 
-if  [ $CONSUMER != "all" ] && [ $CONSUMER != "indiv" ] &&  [ $CONSUME != "comp" ]; then
+if  [ $CONSUMER != "all" ] && [ $CONSUMER != "indiv" ] &&  [ $CONSUMER != "comp" ]; then
     echo "Error : consummer type must be : all, indiv, comp"
     exit 1
 fi
