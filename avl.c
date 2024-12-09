@@ -13,6 +13,8 @@ Tree* createAVL(ConsumerType a, int i, int c){
     pNew->balance= 0;
     return pNew;
 }
+int consumer
+
 int min2(int a, int b){
     return a < b ? a : b;
 }
