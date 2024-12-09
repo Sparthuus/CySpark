@@ -164,7 +164,31 @@ void prefix(Tree* p){
     }
 }
 
-Tree* suppMax(Tree* pTree, int* pValue ){
+Tree* suppMinAVL(Tree* pTree, int *h, int *pe){
+    Tree* temp;
+    if (pTree->pLeft == NULL){                   
+        *pe = pTree->value; 
+        *h = -1;        
+        temp = a;
+        pTree = pTree->pRight; 
+        free(temp);
+        return pTree;
+    }
+    else
+    {
+        pTree->pLeft = suppMinAVL(pTree->pLeft, h, pe); 
+        *h = -*h;
+    }
+
+    if (*h != 0)
+    {
+        pTree->balance += *h;
+        pTree = balanceAVL(pTree);
+        *h = (pTree->balance == 0) ? -1 : 0;
+    }
+    return pTree;
+}
+/*Tree* suppMax(Tree* pTree, int* pValue ){
     if(pTree == NULL || pValue == NULL){
         exit(100);
     }
@@ -182,7 +206,7 @@ Tree* suppMax(Tree* pTree, int* pValue ){
         free(pRemove);
     }
     return pTree;
-}
+} */
 
 Tree* removeAVL(Tree* pTree, int v){
     if(pTree != NULL){
