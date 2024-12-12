@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void open_file(const AVL* pNew, const char* namefile){
-  FILE* file = fopen(filename, "rb");
+  FILE* file = fopen(filename, "r+");
   if (fichier == NULL) {
         printf("Error when opening the File = %d\n", errno);
         exit(1);
