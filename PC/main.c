@@ -1,7 +1,7 @@
-#include <avl.h>
 #include <csv.h>
-
 #include "avl.h"
+
+#include <stdio.h>
 //finish with photo
 int main(){
   int i,c,l; //v1 = id, v2 = capacity, v3= load
