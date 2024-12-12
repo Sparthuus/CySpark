@@ -76,10 +76,12 @@ fi
 case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
 'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
-'lv') case $CONSUMER in
+*) ;;
+esac
+
+if [ $STATION ]; then
+    case $CONSUMER in
         indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
         all);;
-;;
-
-esac
+fi
