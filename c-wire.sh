@@ -18,10 +18,10 @@ fi
 
 
 
-file1=$1
 
-if ! [ -f "$file1" ] ; then
-    echo "$file1 does not exist !"
+
+if ! [ -f "$1" ] ; then
+    echo "$1 does not exist !"
     cat HelpShell.txt
     exit 1
 fi
