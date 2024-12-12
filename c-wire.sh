@@ -72,7 +72,7 @@ fi
 #use tail -n+1 to cut the first line
 #tail -n+1
 case $STATION in 
-hvb);;
+hvb) cat $PATH ;;
 hva);;
 lv);;
 esac
