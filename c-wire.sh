@@ -72,7 +72,18 @@ fi
 #use tail -n+1 to cut the first line
 #tail -n+1
 if [  $POWER_PLANT_ID -gt 0 ]; then
+	case $STATION in 
+'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
+'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
+*) ;;
+esac
 
+if [ $STATION == "lv" ]; then
+    case $CONSUMER in
+        indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
+	comp);;
+        all);;
+fi
  
 
 fi
@@ -82,7 +93,7 @@ case $STATION in
 *) ;;
 esac
 
-if [ $STATION ]; then
+if [ $STATION  == "lv" ]; then
     case $CONSUMER in
         indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
