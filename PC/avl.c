@@ -151,7 +151,7 @@ AVL* insertAVL(AVL* pAVL, int i, int c, int l, int *h){
 void infix(AVL* p){
     if(p!=NULL){
         infix(p->pLeft);
-        printf("[%02d(%2d)]", p->value, p->balance);
+        printf("[station %d : (%d)]", p->id, p->load);
         infix(p->pRight);
     }
 }
