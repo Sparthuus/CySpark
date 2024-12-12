@@ -73,7 +73,7 @@ fi
 #tail -n+1
 case $STATION in 
 hvb) cat $PATH |tail -n+2;;
-hva);;
+hva) cat $PATH |tail -n+2;;
 lv);;
 esac
 
