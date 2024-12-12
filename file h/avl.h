@@ -1,5 +1,5 @@
-#ifndef avl.h
-#define avl.h
+#ifndef avl_h
+#define avl_h
 
 
   typedef struct _avl{
