@@ -74,7 +74,8 @@ fi
 case $STATION in 
 hvb) cat $PATH |tail -n+2;;
 hva) cat $PATH |tail -n+2;;
-lv);;
+lv)cat $PATH |tail -n+2;;
 esac
+case $CONSUMER in
 
 
