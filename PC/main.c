@@ -2,6 +2,7 @@
 #include <csv.h>
 
 int main(){
+  d
 
   
   free(file);
