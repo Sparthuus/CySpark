@@ -73,6 +73,7 @@ fi
 #tail -n+1
 if [  $POWER_PLANT_ID -gt 0 ]; then
 
+ 
 
 fi
 case $STATION in 
