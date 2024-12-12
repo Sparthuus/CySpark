@@ -71,7 +71,9 @@ fi
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
 #tail -n+1
-if 
+if [  $POWER_PLANT_ID -gt 0 ]; then
+
+
 fi
 case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
