@@ -6,7 +6,7 @@
 
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
-if [ $1 == "-h"]; then
+if [ $1 == "-h" ]; then
     cat HelpShell.txt
 fi
 
