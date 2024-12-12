@@ -1,8 +1,8 @@
 CC=gcc
 
-CFLAGS = -std=c11 -Iinclude
+CF = -std=c11 -Iinclude
 
-LIBS = -lpthread
+LIB = -lpthread
 
 PC= pc/main.c pc/avl.c 
 
@@ -13,10 +13,10 @@ TARGET = Wire
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CF) -o $@ $^ $(LIB)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CF) -c -o $@ $<
 
 clean:
 	rm -f $(OBJ) $(TARGET)
