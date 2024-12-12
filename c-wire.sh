@@ -71,9 +71,15 @@ fi
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
 #tail -n+1
+if 
+fi
 case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
 'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
-'lv') case $CONSUMER in;;
-case $CONSUMER in
+'lv') case $CONSUMER in
+        indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
+	comp);;
+        all);;
+;;
+
 esac
