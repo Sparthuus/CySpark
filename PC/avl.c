@@ -1,4 +1,7 @@
-#include "avl.h"
+#include <avl.h>
+
+#include <stdlib.h>
+#include <stdio.h>
 
 AVL* createAVL(int i, int c, int l){
     AVL* pNew = malloc(sizeof(AVL));
