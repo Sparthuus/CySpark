@@ -10,5 +10,4 @@ void open_file(const AVL* pNew, const char* namefile){
     fscanf(file, "%d; %d; %d; %d", pRoot->id, pRoot->capacity, pRoot->load);  
     fclose(file);
     
-  return pRoot;
 }
