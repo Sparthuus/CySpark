@@ -1,6 +1,6 @@
-/*Library*/
-  #include <stdio.h>
-  #include <stdlib.h>
+#ifndef avl.h
+#define avl.h
+
 
   typedef struct _avl{
     int id;
@@ -19,3 +19,5 @@
   AVL* balanceAVL(AVL* pRoot);
   AVL* insertAVL(AVL* pAVL, int i, int c, int l, int* h);
   int searchAVL(AVL* pAVL, int i);
+
+#endif
