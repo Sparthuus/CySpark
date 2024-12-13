@@ -85,7 +85,8 @@ echo "All parameters are valid."
 #use tail -n+1 to cut the first line
 #tail -n+1
 if[ -n "$POWER" ] && [ $POWER -le 0 ]; then
-	echo "Parameter value is incorrect"
+	echo "Parameter value is incorrect!"
+ 	cat HelpShell.txt
  	exit 5
 
 fi
