@@ -56,12 +56,12 @@ if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "c
 fi
 
 
-if [[ "${STATION,,}" == "hva" && ( "${CONSUMER,,}" == "indiv" || "${CONSUMER,,}" == "all" ) ]]; then
+if [[ "$STATION" == "hva" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hva AND indiv or all"
     exit 1
 fi
 
-if [[ "${STATION,,}" == "hvb" && ( "${CONSUMER,,}" == "indiv" || "${CONSUMER,,}" == "all" ) ]]; then
+if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hvb AND indiv or all"
     exit 1
 fi
