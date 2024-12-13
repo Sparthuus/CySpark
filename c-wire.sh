@@ -37,28 +37,36 @@ fi
 PATH="$1" # take value of $1 and apply it to PATH
 STATION=$2
 CONSUMER=$3
-POWER_PLANT_ID=$4 # qu'il faudra raouter dans le ficher créé
+POWER_PLANT_ID=$4 
+
+#Transform into lowercase caracters
+STATION=${STATION,,}
+CONSUMER=${CONSUMER,,}
 
 # Checking all the parameters
-if [ $STATION != "hva" ] && [ $STATION != "hvb" ] && [ $STATION != "lv" ]; then
-    echo "Error : station type must be : hva, hvb, lv"
+if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
+    echo "Error: station type must be one of: hva, hvb, lv"
     exit 1
 fi
 
-if  [ $CONSUMER != "all" ] && [ $CONSUMER != "indiv" ] &&  [ $CONSUMER != "comp" ]; then
-    echo "Error : consummer type must be : all, indiv, comp"
+
+if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "comp" ]; then
+    echo "Error: consumer type must be one of: all, indiv, comp"
     exit 1
 fi
 
-if  [ ${STATION,,} == "hva" ] && { [[ ${CONSUMER,,} == "indiv" ]] || [[ ${CONSUMER,,} == "all" ]] }; then
-    echo "Error : you can't have hva AND indiv or all"
+
+if [[ "${STATION,,}" == "hva" && ( "${CONSUMER,,}" == "indiv" || "${CONSUMER,,}" == "all" ) ]]; then
+    echo "Error: you can't have hva AND indiv or all"
     exit 1
 fi
 
-if  [ ${STATION,,} == "hvb" ] && { [[ ${CONSUMER,,} == "indiv" ]] || [[ ${CONSUMER,,} == "all" ]] }; then
-    echo "Error : you can't have hvb AND indiv or all"
+if [[ "${STATION,,}" == "hvb" && ( "${CONSUMER,,}" == "indiv" || "${CONSUMER,,}" == "all" ) ]]; then
+    echo "Error: you can't have hvb AND indiv or all"
     exit 1
 fi
+
+echo "All parameters are valid."
 
 
 
