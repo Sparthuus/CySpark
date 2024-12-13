@@ -2,7 +2,7 @@
 #filter the line with one line 
 # tr trasform 
 # for the case of an 4 argument to treat
-#
+
 
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
@@ -42,11 +42,11 @@ STATION=$2
 CONSUMER=$3
 POWER=$4 
 
-#Transform into lowercase caracters
+#Convert into lowercase caracters
 STATION=${STATION,,}
 CONSUMER=${CONSUMER,,}
 
-if[]; then
+
 # Checking all the parameters
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
     echo "Error: station type must be one of: hva, hvb, lv"
