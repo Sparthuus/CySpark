@@ -6,9 +6,12 @@
 
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 
-if [ $1 == "-h" ]; then
-    cat HelpShell.txt
-fi
+for (( i=1 ; i<=4 ; i++ ))
+do
+	if [ "$i" == "-h" ]; then
+		cat HelpShell.txt
+	fi
+done
 
 if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
     echo "Bad number of arguments!"
