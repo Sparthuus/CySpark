@@ -37,12 +37,13 @@ fi
 PATH="$1" # take value of $1 and apply it to PATH
 STATION=$2
 CONSUMER=$3
-POWER_PLANT_ID=$4 
+POWER=$4 
 
 #Transform into lowercase caracters
 STATION=${STATION,,}
 CONSUMER=${CONSUMER,,}
 
+if[]; then
 # Checking all the parameters
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
     echo "Error: station type must be one of: hva, hvb, lv"
@@ -70,6 +71,7 @@ echo "All parameters are valid."
 
 
 
+
 ##grep  filtre pr lesligne hvb et comp ex puis si on a - metrtre 0 puis finir par faire la somme des capa et des conoso finir avezc |./exec
 
 
@@ -79,7 +81,7 @@ echo "All parameters are valid."
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
 #tail -n+1
-if [  $POWER_PLANT_ID -gt 0 ]; then
+if [  $POWER -gt 0 ]; then
 	case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
 'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
