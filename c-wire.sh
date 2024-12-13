@@ -81,6 +81,12 @@ echo "All parameters are valid."
 #use cut to only have the column needed
 #use tail -n+1 to cut the first line
 #tail -n+1
+if[ -n "$POWER" ] && [ $POWER -le 0 ]; then
+	echo "Parameter value is incorrect"
+ 	exit 5
+
+fi
+
 if [  $POWER -gt 0 ]; then
 	case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
@@ -88,7 +94,7 @@ if [  $POWER -gt 0 ]; then
 *) ;;
 esac
 
-if [ $STATION == "lv" ]; then
+if [ "$STATION" == "lv" ]; then
     case $CONSUMER in
         indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
