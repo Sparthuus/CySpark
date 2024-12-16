@@ -3,10 +3,18 @@
 # tr trasform 
 # for the case of an 4 argument to treat
 # make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
-echo
+#!/bin/bash
+#filter the line with one line 
+# tr trasform 
+# for the case of an 4 argument to treat
+# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
+
 clear
+echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
+
+hi="$#"
 
 while [  $# -gt 0 ]; do
 	if [[ "$1" == "-h" ]]; then
@@ -16,8 +24,7 @@ while [  $# -gt 0 ]; do
    	fi
 	shift
  done
-
-if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
+if [ $hi -ne 4 ] && [ $hi -ne 3 ]; then
     echo "Bad number of arguments!"
     echo
     cat HelpShell.txt
@@ -35,13 +42,6 @@ if ! [ -f "$1" ] ; then
     cat HelpShell.txt
     echo
     exit 2
-fi
-
-function compile(){
-if ! [ -d "$1" ] ; then
-	echo "'$1' is not a directory"
-	echo
-	exit 3
 fi
 
 # store directory
