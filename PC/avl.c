@@ -142,7 +142,7 @@ AVL* insertAVL(AVL* pAVL, int i, int c, int l, int *h){
         pAVL->pRight = insertAVL(pAVL->pRight, i, c, l, h);
     }
     else{
-        *h = 0:
+        *h = 0;
         return pAVL;
     }
     return pAVL;
