@@ -7,16 +7,10 @@ void effacer(){
 }
 
 void continue(){
-    /*Fonction qui permet de faire une pause*/
+    //to make a break
     printf("\033[1;30mPress \033[4mEnter\033[0m \033[1;30mto continue\033[0m\n");
-    #elif __linux__
-        int ch;
-        //initscr();
-        //cbreak();
-        //noecho();  
-        while((ch=getch())!='\n'); 
-        //endwin();         
-    #endif
+    while((ch=getch())!='\n'); 
+       
 }
 
 void intro(){
