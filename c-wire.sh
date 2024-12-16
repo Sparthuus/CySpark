@@ -14,7 +14,7 @@ echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
 
-hi="$#"
+h="$#"
 
 while [  $# -gt 0 ]; do
 	if [[ "$1" == "-h" ]]; then
@@ -24,7 +24,7 @@ while [  $# -gt 0 ]; do
    	fi
 	shift
  done
-if [ $hi -ne 4 ] && [ $hi -ne 3 ]; then
+if [ $h -ne 4 ] && [ $h -ne 3 ]; then
     echo "Bad number of arguments!"
     echo
     cat HelpShell.txt
