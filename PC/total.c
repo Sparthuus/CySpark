@@ -9,12 +9,12 @@ int calculateLoadSum(AVL* pRoot, int stationType) {
 
     int sum = 0;
 
-    // Filtre : si l'ID correspond au type de station spécifié
+    // If ID correspond to the type of station specified
     if (pRoot->id == stationType) {
         sum += pRoot->load;
     }
 
-    // Parcours récursif (infix)
+    // Infix 
     sum += calculateLoadSum(pRoot->pLeft, stationType);
     sum += calculateLoadSum(pRoot->pRight, stationType);
 
