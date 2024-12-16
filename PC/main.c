@@ -18,6 +18,14 @@ int main(){
       }
     }
     printf("0;%d;%d\n", sum2, sum3);
+    AVL* pRoot = NULL;
+    int totalload = calculateLoadSum(pRoot);
+    finish();
+    printf("The total load for stations of type %d is: %d\n", stationType, totalLoad);
+     // Display the AVL tree in order
+    printf("Displaying the AVL tree in order:\n");
+    infix(pRoot);
+    printf("Sum of consumption by type of station :\n");
     /*
     AVLNode *root = NULL;
     const char *filename = "data.csv";
