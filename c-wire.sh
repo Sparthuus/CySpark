@@ -15,8 +15,7 @@ echo "Welcome user ! Feel free to use our programm. If you need any help you can
 echo
 
 for arg in "$@"; do
-        if [[ "$arg" == "-h" ]]; then 
-                echo "Option -h détectée : Affichage de l'aide :" 
+        if [[ "$arg" == "-h" ]]; then  
                 cat HelpShell.txt
                 exit 0 
         fi
