@@ -130,6 +130,7 @@ if [ -z "$POWER" ]; then
 			;;
 		esac
 fi
+
 if [ "$STATION" == "lv" ]; then
     case $CONSUMER in
         indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
@@ -138,13 +139,13 @@ if [ "$STATION" == "lv" ]; then
 fi
  
 
-fi
+if
 case $STATION in 
 'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8|;;
 'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
 *) ;;
 esac
-
+fi
 
 if [ $STATION  == "lv" ]; then
     case $CONSUMER in
