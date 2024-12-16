@@ -7,15 +7,19 @@
 int main(){
   intro();
   int v1, v2, v3;
+  int stationType;
+  int totalLoad;
+  int heightChanged = 0;  // To track height changes during AVL insertions
+  
   AVL* pRoot = NULL;
       // Load data from the terminal
   printf("Loading data from the terminal...\n");
     while(scanf("%d %d %d", &v1, &v2, &v3) == 3){
-      if (v1 == 0){
+      if (v1 < 0 || v2 < 0 || v3 < 0){
           printf("Doesnt work");
       }
       else {
-        pRoot = insertAVL();
+        pRoot = insertAVL(pRoot, v1, v2, v3, &heightChanged);
     }
       
     printf("Displaying the AVL tree in order:\n");
