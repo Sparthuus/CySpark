@@ -17,7 +17,6 @@ void intro(){
 }
                                                   
 void finish(){
-  effacer();
   printf(" Finish !\n");
 }
 
