@@ -15,9 +15,26 @@ void intro(){
   printf("\nWelcome to our programm Cy EDF !\n"
          " Please wait patiently\n");
 }
-                                                  
+
+void waiting_scene(){
+    int i = rand() % 3;
+    switch (i){
+        case 1 :
+            printf("Almost finish...\n");
+            break
+        case 2 :
+            printf("Does the time has time for the time ?\n");
+            break
+        case 3 :
+            printf("I think it's finish... right ?\n");
+            break
+    }
+}
+
 void finish(){
   printf(" Finish !\n");
 }
+
+
 
   
