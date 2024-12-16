@@ -113,51 +113,53 @@ AVL* balanceAVL(AVL* pRoot){
     return pRoot;
 }
 
-int searchAVL(AVL* pAVL, int i){
-    if(pAVL == NULL){
+int searchAVL(AVL* pRoot, int i){
+    if(pRoot == NULL){
         return 0;
     }
-    if(pAVL->id == i){
+    if(pRoot->id == i){
         return 1;
     }
-    else if(i > pAVL->id){
-        return searchAVL(pAVL->pRight, i);
+    else if(i > pRoot->id){
+        return searchAVL(pRoot->pRight, i);
     }
     else{
-        return searchAVL(pAVL->pLeft, i);
+        return searchAVL(pRoot->pLeft, i);
     }
 }
 
-AVL* insertAVL(AVL* pAVL, int i, int c, int l, int *h){
-    if(pAVL == NULL){
+AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
+    if(pRoot == NULL){
         // insert
         *h = 1;
         return createAVL(i, c, l);
     }    
-    if (i < pAVL->id){
-        pAVL->pLeft = insertAVL(pAVL->pLeft, i, c, l, h);
+    if (i < pRoot->id){
+        pRoot->pLeft = insertAVL(pRoot->pLeft, i, c, l, h);
         *h = -*h;
     }
-    else if(i > pAVL->id){
-        pAVL->pRight = insertAVL(pAVL->pRight, i, c, l, h);
+    else if(i > pRoot->id){
+        pRoot->pRight = insertAVL(pRoot->pRight, i, c, l, h);
     }
     else{
         *h = 0;
-        return pAVL;
+        return pRoot;
     }
-    return pAVL;
+    return pRoot;
 }
 
-void infix(AVL* p){
-    if(p!=NULL){
-        infix(p->pLeft);
-        printf("[station %d : (%d)]", p->id, p->load);
-        infix(p->pRight);
+void infix(AVL* pRoot){
+    if(pRoot != NULL){
+        infix(pRoot->pLeft);
+        printf("[station %d : (%d)]", pRoot->id, pRoot->load);
+        infix(pRoot->pRight);
     }
 }
 
-void freeAVL(AVL* p){
-    freeAVL(p->left);
-    freeAVL(p->right);
-    free(p);
+void freeAVL(AVL* pRoot){
+ if(pRoot != NULL){
+    freeAVL(pRoot->left);
+    freeAVL(pRoot->right);
+    free(pRoot);
+    }
 }
