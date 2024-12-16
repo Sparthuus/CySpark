@@ -19,4 +19,6 @@ $(TARGET): $(OBJ)
 	$(CC) $(CF) -c -o $@ $<
 
 clean:
+	@echo "Cleaning..."
 	rm -f $(OBJ) $(TARGET)
+	@echo "Clean completed"
