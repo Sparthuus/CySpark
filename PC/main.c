@@ -1,9 +1,11 @@
 #include "avl.h"
 #include "total.h"
 #include "csv.h"
+#include "tools.h
 
 
 int main(){
+  intro();
   AVLNode *root = NULL;
   const char *filename = "data.csv";
   int stationType;    // Variable to store the station type to analyze
@@ -11,6 +13,8 @@ int main(){
     // Load data from the CSV file
     printf("Loading data from the CSV file...\n");
     open_file(&root, filename);
+    clear();
+    intro();
     printf("Data successfully loaded!\n");
 
     // Ask for the station type to calculate the load sum
@@ -22,6 +26,7 @@ int main(){
 
     // Calculate the total load
     int totalLoad = calculateLoadSum(root, stationType);
+    finish();
     printf("The total load for stations of type %d is: %d\n", stationType, totalLoad);
 
     // Display the AVL tree in order
