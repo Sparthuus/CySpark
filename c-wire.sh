@@ -119,11 +119,9 @@ if [ -z "$POWER" ]; then
 	else
 		case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
-			;;
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
-			;;
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8;;
 		*) 
 			:
 			;;
@@ -133,8 +131,9 @@ fi
 if [ "$STATION" == "lv" ]; then
     case $CONSUMER in
         indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
-	comp);;
+		comp);;
         all);;
+	esac
 fi
  
 
@@ -151,4 +150,5 @@ if [ $STATION  == "lv" ]; then
         indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
         all);;
+    esac
 fi
