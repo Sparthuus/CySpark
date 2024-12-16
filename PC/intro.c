@@ -16,7 +16,7 @@ void intro(){
          " ╚██████╗   ██║       ███████╗██████╔╝██║\n"     
          "  ╚═════╝   ╚═╝       ╚══════╝╚═════╝ ╚═╝\n");
   while (1){
-  printf("\nWelcome to our programm Cy EDF !\n
+  printf("\nWelcome to our programm Cy EDF !\n"
          " Please wait patiently\n");
   }
   effacer();
