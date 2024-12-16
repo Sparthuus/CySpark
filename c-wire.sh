@@ -105,13 +105,32 @@ if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
 
 fi
 
-if [  $POWER -gt 0 ]; then
-	case $STATION in 
-'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8;;
-'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
-*) ;;
-esac
-
+if [ -z "$POWER" ]; then
+	case "$STATION" in 
+		'hvb') 
+			cat "$PATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 2,7,8
+			;;
+		'hva') 
+			cat "$PATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 3,7,8
+			;;
+		*) 
+			: # Pas d'action pour le cas par défaut
+			;;
+	esac
+	
+	else
+		case "$STATION" in 
+		'hvb') 
+			cat "$PATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
+			;;
+		'hva') 
+			cat "$PATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
+			;;
+		*) 
+			: # Pas d'action pour le cas par défaut
+			;;
+		esac
+fi
 if [ "$STATION" == "lv" ]; then
     case $CONSUMER in
         indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
