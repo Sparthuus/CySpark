@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+//cat c-wire_v00.dat | tail -n+2 | tr - 0 |cut -d ';' -f 4,7,8
 void open_file(const AVL* pNew, const char* filename){
   FILE* file = fopen(filename, "r+");
   if (file == NULL) {
