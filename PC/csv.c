@@ -8,7 +8,7 @@ void open_file(const AVL* pNew, const char* filename){
     }
     int id, capacity, load;
     int height_change = 0 ;
-    while (fscanf(file, "%d; %d; %d; %d", &id, &capacity, &load)== 3) {
+    while (fscanf(file, "%d %d %d", &id, &capacity, &load)== 3) {
       *pRoot = insertAVL(*pRoot, id, capacity, load, &height_change); 
     }
     fclose(file);
