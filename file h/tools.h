@@ -1,5 +1,5 @@
-#ifndef tools.h
-#define tools.h
+#ifndef TOOLS_H
+#define TOOLS_h
 
 void clear();
 void intro();
