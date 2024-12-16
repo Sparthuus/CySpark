@@ -44,7 +44,7 @@ fi
 
 # store directory
 
-PATH="$1" # take value of $1 and apply it to PATH
+FILEPATH="$1" # take value of $1 and apply it to FILEPATH
 STATION=$2
 CONSUMER=$3
 POWER=$4 
@@ -106,10 +106,10 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$PATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 2,7,8
 			;;
 		'hva') 
-			cat "$PATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
 		*) 
 			: 
@@ -119,10 +119,10 @@ if [ -z "$POWER" ]; then
 	else
 		case "$STATION" in 
 		'hvb') 
-			cat "$PATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
 			;;
 		'hva') 
-			cat "$PATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
 		*) 
 			:
@@ -132,7 +132,7 @@ fi
 
 if [ "$STATION" == "lv" ]; then
     case $CONSUMER in
-        indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
+        indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
         all);;
 fi
@@ -140,15 +140,15 @@ fi
 
 if
 case $STATION in 
-'hvb') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8|;;
-'hva') cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
+'hvb') cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8|;;
+'hva') cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
 *) ;;
 esac
 fi
 
 if [ $STATION  == "lv" ]; then
     case $CONSUMER in
-        indiv) cat $PATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
+        indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
 	comp);;
         all);;
 fi
