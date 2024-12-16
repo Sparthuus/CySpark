@@ -1,10 +1,8 @@
-#include <csv.h>
 #include "avl.h"
 #include "total.h"
 #include "csv.h"
 
-#include <stdio.h>
-//finish with photo
+
 int main(){
   AVLNode *root = NULL;
   const char *filename = "data.csv";
