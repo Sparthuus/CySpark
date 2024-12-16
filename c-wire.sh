@@ -112,7 +112,7 @@ if [ -z "$POWER" ]; then
 			cat "$PATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
 		*) 
-			: # Pas d'action pour le cas par défaut
+			: 
 			;;
 	esac
 	
@@ -125,7 +125,7 @@ if [ -z "$POWER" ]; then
 			cat "$PATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
 		*) 
-			: # Pas d'action pour le cas par défaut
+			:
 			;;
 		esac
 fi
