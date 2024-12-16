@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void effacer(){
+void clear(){
     //Clear terminal 
     printf("\033[2J\033[H");
 }
