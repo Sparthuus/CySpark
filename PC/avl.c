@@ -158,8 +158,8 @@ void infix(AVL* pRoot){
 
 void freeAVL(AVL* pRoot){
  if(pRoot != NULL){
-    freeAVL(pRoot->left);
-    freeAVL(pRoot->right);
+    freeAVL(pRoot->pLeft);
+    freeAVL(pRoot->pRight);
     free(pRoot);
     }
 }
