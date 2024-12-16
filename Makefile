@@ -4,7 +4,7 @@ CF = -std=c11 -Iinclude
 
 LIB = -lpthread
 
-PC= pc/main.c pc/avl.c 
+PC= pc/main.c pc/avl.c pc/total.c pc/waiting.c \
 
 OBJ = $(SRC:.c=.o)
 
