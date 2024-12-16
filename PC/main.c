@@ -6,10 +6,10 @@
 
 int main(){
   intro();
+  int v1, v2, v3;
+  AVL* pRoot = NULL;
       // Load data from the terminal
-    printf("Loading data from the terminal...\n");
-    int v1, v2, v3;
-    AVL* pRoot = NULL;
+  printf("Loading data from the terminal...\n");
     while(scanf("%d %d %d", &v1, &v2, &v3) == 3){
       if (v1 == 0){
           printf("Doesnt work");
@@ -17,9 +17,11 @@ int main(){
       else {
         pRoot = insertAVL();
     }
+      
     printf("Displaying the AVL tree in order:\n");
     infix(pRoot); // Display the AVL tree in order
     finish();
+      
     freeAVL(pRoot);
     int totalload = calculateLoadSum(pRoot, stationType);
    
