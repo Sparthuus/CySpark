@@ -2,12 +2,16 @@
 #filter the line with one line 
 # tr trasform 
 # for the case of an 4 argument to treat
-
-
+echo
+clear
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
+echo
+
 while [  $# -gt 0 ]; do
 	if [[ "$1" == "-h" ]]; then
  		cat HelpShell.txt
+   		echo
+     		exit 0
    	fi
 	shift
  done
@@ -33,13 +37,13 @@ fi
 if ! [ -f "$1" ] ; then
     echo "$1 does not exist !"
     cat HelpShell.txt
-    exit 1
+    exit 2
 fi
 
 function compile(){
 if ! [ -d "$1" ] ; then
 	echo"'$1' is not a directory"
-	exit 2
+	exit 3
 fi
 
 # store directory
@@ -57,24 +61,24 @@ CONSUMER=${CONSUMER,,}
 # Checking all the parameters
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
     echo "Error: station type must be one of: hva, hvb, lv"
-    exit 1
+    exit 4
 fi
 
 
 if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "comp" ]; then
     echo "Error: consumer type must be one of: all, indiv, comp"
-    exit 1
+    exit 5
 fi
 
 
 if [[ "$STATION" == "hva" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hva AND indiv or all"
-    exit 1
+    exit 6
 fi
 
 if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hvb AND indiv or all"
-    exit 1
+    exit 7
 fi
 
 echo "All parameters are valid."
@@ -94,7 +98,7 @@ echo "All parameters are valid."
 if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
 	echo "Parameter value is incorrect!"
  	cat HelpShell.txt
- 	exit 5
+ 	exit 8
 
 fi
 
