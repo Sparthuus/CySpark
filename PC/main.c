@@ -19,7 +19,7 @@ int main(){
     }
     printf("0;%d;%d\n", sum2, sum3);
     AVL* pRoot = NULL;
-    int totalload = calculateLoadSum(pRoot);
+    int totalload = calculateLoadSum(pRoot, stationType);
     finish();
     printf("The total load for stations of type %d is: %d\n", stationType, totalLoad);
      // Display the AVL tree in order
