@@ -17,7 +17,8 @@
   AVL* doublerotateLeft(AVL* pRoot);
   AVL* doublerotateRight(AVL* pRoot);
   AVL* balanceAVL(AVL* pRoot);
-  AVL* insertAVL(AVL* pAVL, int i, int c, int l, int* h);
-  int searchAVL(AVL* pAVL, int i);
+  AVL* insertAVL(AVL* pRoot, int i, int c, int l, int* h);
+  int searchAVL(AVL* pRoot, int i);
+  freeAVL(AVL* pRoot);
 
 #endif
