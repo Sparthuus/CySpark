@@ -159,4 +159,5 @@ void infix(AVL* p){
 void freeAVL(AVL* p){
     freeAVL(p->left);
     freeAVL(p->right);
+    free(p);
 }
