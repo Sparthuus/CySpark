@@ -14,7 +14,36 @@ echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
 
-for arg in "$@"; do
+for arg in "$@"; doif [ -z "$POWER" ]; then
+	case "$STATION" in 
+		'hvb') 
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 2,7,8
+			;;
+		'hva') 
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 3,7,8
+			;;
+		*) 
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 4,7,8
+			;;
+	esac
+	
+else
+	case "$STATION" in 
+	        'hvb') 
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
+		        ;;
+	        'hva') 
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
+		        ;;
+	        *)     case $CONSUMER in  
+                                indiv) cat $FILEPATH | tail -n+2 | tr - 0 || cut -d ';' -f 4,7,8;;
+	                        comp)cat $FILEPATH | tail -n+2 | tr - 0 | grep -E "^[0-9]+;[0]+;[0]+;[0-9]+;[0]+;" | cut -d ';' -f 4,7,8;;
+                                all);;
+                       esac
+		        
+		        ;;
+	esac
+fi
         if [[ "$arg" == "-h" ]]; then  
                 cat HelpShell.txt
                 exit 0 
@@ -106,49 +135,30 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 2,7,8
 			;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 | tr '-' '0' | cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 3,7,8
 			;;
 		*) 
-			: 
+			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 4,7,8
 			;;
 	esac
 	
-	else
-		case "$STATION" in 
-		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8;;
-		'hva') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8;;
-		*) 
-			:
-			;;
-		esac
-fi
-
-if [ "$STATION" == "lv" ]; then
-    case $CONSUMER in
-        indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
-		comp);;
-        all);;
+else
+	case "$STATION" in 
+	        'hvb') 
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
+		        ;;
+	        'hva') 
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
+		        ;;
+	        *)     case $CONSUMER in  
+                                indiv) cat $FILEPATH | tail -n+2 | tr - 0 || cut -d ';' -f 4,7,8;;
+	                        comp)cat $FILEPATH | tail -n+2 | tr - 0 | grep -E "^[0-9]+;[0]+;[0]+;[0-9]+;[0]+;" | cut -d ';' -f 4,7,8;;
+                                all);;
+                       esac
+		        
+		        ;;
 	esac
-fi
- 
-
-if
-case $STATION in 
-'hvb') cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 2,7,8|;;
-'hva') cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 3,7,8;;
-*) ;;
-esac
-fi
-
-if [ $STATION  == "lv" ]; then
-    case $CONSUMER in
-        indiv) cat $FILEPATH | tail -n+2 | tr - 0 | cut -d ';' -f 4,7,8;;
-	comp);;
-        all);;
-    esac
 fi
