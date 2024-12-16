@@ -6,7 +6,7 @@ void effacer(){
     printf("\033[2J\033[H");
 }
 
-void show(){
+void intro(){
   int number = 1;
  
   printf("  ██████╗██╗   ██╗    ███████╗██████╗ ███████╗\n"
