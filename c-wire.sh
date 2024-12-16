@@ -2,6 +2,7 @@
 #filter the line with one line 
 # tr trasform 
 # for the case of an 4 argument to treat
+# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
 echo
 clear
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
@@ -16,17 +17,11 @@ while [  $# -gt 0 ]; do
 	shift
  done
 
- 
-for (( i=1 ; i<=4 ; i++ ))
-do
-	if [ "$i" == "-h" ]; then
-		cat HelpShell.txt
-	fi
-done
-
 if [ "$#" -ne 4 ] && [ "$#" -ne 3 ]; then
     echo "Bad number of arguments!"
+    echo
     cat HelpShell.txt
+    echo
     exit 1
 fi
 
@@ -36,13 +31,16 @@ fi
 
 if ! [ -f "$1" ] ; then
     echo "$1 does not exist !"
+    echo
     cat HelpShell.txt
+    echo
     exit 2
 fi
 
 function compile(){
 if ! [ -d "$1" ] ; then
-	echo"'$1' is not a directory"
+	echo "'$1' is not a directory"
+	echo
 	exit 3
 fi
 
@@ -61,23 +59,27 @@ CONSUMER=${CONSUMER,,}
 # Checking all the parameters
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
     echo "Error: station type must be one of: hva, hvb, lv"
+    echo
     exit 4
 fi
 
 
 if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "comp" ]; then
     echo "Error: consumer type must be one of: all, indiv, comp"
+    echo
     exit 5
 fi
 
 
 if [[ "$STATION" == "hva" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hva AND indiv or all"
+    echo
     exit 6
 fi
 
 if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
     echo "Error: you can't have hvb AND indiv or all"
+    echo
     exit 7
 fi
 
@@ -98,6 +100,7 @@ echo "All parameters are valid."
 if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
 	echo "Parameter value is incorrect!"
  	cat HelpShell.txt
+ 	echo
  	exit 8
 
 fi
