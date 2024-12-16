@@ -11,12 +11,7 @@ int main(){
   AVLNode *root = NULL;
   const char *filename = "data.csv";
 
-
-
   printf("Sum of consumption by type of station :\n");
  
-
-    
-
   return 0;
 }
