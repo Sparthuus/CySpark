@@ -155,3 +155,8 @@ void infix(AVL* p){
         infix(p->pRight);
     }
 }
+
+void delete(AVL* p){
+    free(p->left);
+    free(p->right);
+}
