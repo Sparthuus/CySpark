@@ -8,20 +8,15 @@ int main(){
   int sum2 = 0;
   int sum3 = 0;
   int v1 = 0;
-  while( scanf("%d,%d,%d\n", &i, &c, &l, ) == 3){
-      if(v1 !=i){
-        v1 = i;
-      }
-    
-    
-      AVL *pRoot = createAVL(i,c,l);
-      if(pRoot == NULL){
-        exit(1);      
-      }
-      while 
-    
-  }
+  AVLNode *root = NULL;
+  const char *filename = "data.csv";
+
+
+
+  printf("Sum of consumption by type of station :\n");
  
-  free(file);
+
+    
+
   return 0;
 }
