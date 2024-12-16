@@ -5,7 +5,14 @@
 
 
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
+while [  $# -gt 0 ]; do
+	if [[ "$1" == "-h" ]]; then
+ 		cat HelpShell.txt
+   	fi
+	shift
+ done
 
+ 
 for (( i=1 ; i<=4 ; i++ ))
 do
 	if [ "$i" == "-h" ]; then
