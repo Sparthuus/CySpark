@@ -14,17 +14,16 @@ echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
 
-h="$#"
+for arg in "$@"; do
+        if [[ "$arg" == "-h" ]]; then 
+                echo "Option -h détectée : Affichage de l'aide :" 
+                cat HelpShell.txt
+                exit 0 
+        fi
+done
 
-while [  $# -gt 0 ]; do
-	if [[ "$1" == "-h" ]]; then
- 		cat HelpShell.txt
-   		echo
-     		exit 0
-   	fi
-	shift
- done
-if [ $h -ne 4 ] && [ $h -ne 3 ]; then
+
+if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     echo "Bad number of arguments!"
     echo
     cat HelpShell.txt
