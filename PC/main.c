@@ -6,12 +6,23 @@
 
 int main(){
   intro();
-  AVLNode *root = NULL;
-  const char *filename = "data.csv";
-  int stationType;    // Variable to store the station type to analyze
-
-    // Load data from the CSV file
-    printf("Loading data from the CSV file...\n");
+      // Load data from the terminal
+    printf("Loading data from the terminal...\n");
+    int v1, v2, v3;
+    int sum2 = 0;
+    int sum3 = 0;
+    while(scanf("%d %d %d", &v1, &v2, &v3) == 3){
+      if (v1 == 0){
+          sum2 += v2;
+          sum3 += v3;
+      }
+    }
+    printf("0;%d;%d\n", sum2, sum3);
+    /*
+    AVLNode *root = NULL;
+    const char *filename = "data.csv";
+    int stationType;    // Variable to store the station type to analyze
+    
     open_file(&root, filename);
     clear();
     intro();
@@ -33,6 +44,7 @@ int main(){
     printf("Displaying the AVL tree in order:\n");
     infix(root);
     printf("Sum of consumption by type of station :\n");
+    */
  
   return 0;
 }
