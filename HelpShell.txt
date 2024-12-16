@@ -6,3 +6,5 @@ However, if you decided to choose lv, you can choose any type of consumers (comp
 The last argument name is powerstation. It allows you to sort the information dependings of the power station's number.
 
 We hope this helped you! Have nice coding!
+cat c-wire_v00.dat | tail -n+2 | tr - 0 |cut -d ';' -f 4,7,8
+
