@@ -1,8 +1,8 @@
-#ifndef avl_h
-#define avl_h
+#ifndef AVL_H
+#define AVL_H
 
 
-  typedef struct _avl{
+typedef struct _avl {
     int id;
     int load;
     int capacity;
@@ -11,15 +11,15 @@
     int balance;
 } AVL;
 
-  AVL* createAVL(int i, int c, int l);
-  AVL* rotateLeft(AVL* pRoot);
-  AVL* rotateRight(AVL* pRoot);
-  AVL* doublerotateLeft(AVL* pRoot);
-  AVL* doublerotateRight(AVL* pRoot);
-  AVL* balanceAVL(AVL* pRoot);
-  int searchAVL(AVL* pRoot, int i);
-  AVL* insertAVL(AVL* pRoot, int i, int c, int l, int* h);
-  void infix(AVL* pRoot);
-  void freeAVL(AVL* pRoot);
+AVL* createAVL(int i, int c, int l);
+AVL* rotateLeft(AVL* pRoot);
+AVL* rotateRight(AVL* pRoot);
+AVL* doubleRotateLeft(AVL* pRoot);
+AVL* doubleRotateRight(AVL* pRoot);
+AVL* balanceAVL(AVL* pRoot);
+int searchAVL(AVL* pRoot, int i);
+AVL* insertAVL(AVL* pRoot, int i, int c, int l, int* h);
+void infix(AVL* pRoot);
+void freeAVL(AVL* pRoot);
 
 #endif
