@@ -96,18 +96,29 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec  | .csv
+			touch "hvb_comp.csv"
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp.csv
 			;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[0-9]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec  | .csv
+			touch "hva_comp.csv"
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[0-9]+;[-]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp.csv
 			;;
-		*)     case $CONSUMER in  
-                                indiv) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
-	                        comp) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
-                                *) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
-                       esac
+		*) 
+			case $CONSUMER in  
+				indiv) 
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > indiv.csv
+					;;
+				comp) 
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > comp.csv
+					;;
+				*) 
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > default.csv
+					;;
+			esac
 			;;
 	esac
+fi
+
 	
 else
 	case "$STATION" in 
