@@ -126,25 +126,25 @@ fi
 else
 	case "$STATION" in 
 	        'hvb') 
-				touch "hvb_comp$POWER.csv"
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp$POWER.csv
+				touch "hvb_comp_$POWER.csv"
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp_$POWER.csv
 		        ;;
 	        'hva') 
-	 			touch "hva_comp$POWER.csv"
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp$POWER.csv
+	 			touch "hva_comp_$POWER.csv"
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp_$POWER.csv
 		        ;;
 	        *)     case $CONSUMER in  
                                 'indiv') 
-									touch "lv_indiv$POWER.csv"
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_indiv$POWER.csv
+									touch "lv_indiv_$POWER.csv"
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_indiv_$POWER.csv
 									;;
 	                        'comp')
-									touch "lv_comp$POWER.csv"
-			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_comp$POWER.csv
+									touch "lv_comp_$POWER.csv"
+			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_comp_$POWER.csv
 									;;
                                 *) 
-
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv
+									touch "lv_all_$POWER.csv"
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_all_$POWER.csv
     								;;
                        esac
 		        
