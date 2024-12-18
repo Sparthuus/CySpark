@@ -116,6 +116,7 @@ if [ -z "$POWER" ]; then
 				*) 
     					touch "lv_all.csv"
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > lv_all.csv
+					cat "$FILEPATH" | tail -n+2 |
 					;;
 			esac
 			;;
@@ -133,12 +134,13 @@ else
 	 			touch "hva_comp_$POWER.csv"
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp_$POWER.csv
 		        ;;
-	        *)     case $CONSUMER in  
+	        *)     
+				case $CONSUMER in  
                                 'indiv') 
 									touch "lv_indiv_$POWER.csv"
 									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_indiv_$POWER.csv
 									;;
-	                        'comp')
+	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
 			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_comp_$POWER.csv
 									;;
