@@ -1,5 +1,5 @@
 #!/bin/bash 
-# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
+# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest do the same but at the end sort by capacity or load 
 #do we need to add helpshell at every eror
 
 clear
