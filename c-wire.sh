@@ -1,13 +1,6 @@
-#!/bin/bash
-#filter the line with one line 
-# tr trasform 
-# for the case of an 4 argument to treat
+#!/bin/bash 
 # make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
-#!/bin/bash
-#filter the line with one line 
-# tr trasform 
-# for the case of an 4 argument to treat
-# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest
+#do we need to add helpshell at every eror
 
 clear
 echo
@@ -44,7 +37,7 @@ fi
 
 # store directory
 
-FILEPATH="$1" # take value of $1 and apply it to FILEPATH
+FILEPATH="$1" 
 STATION=$2
 CONSUMER=$3
 POWER=$4 
@@ -86,10 +79,6 @@ echo "All parameters are valid."
 
 
 
-##grep  filtre pr lesligne hvb et comp ex puis si on a - metrtre 0 puis finir par faire la somme des capa et des conoso finir avezc |./exec
-
-
-
 
 #make before differant function for each
 #use cut to only have the column needed
@@ -106,28 +95,31 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | grep | tr '-' '0' | cut -d ';' -f 2,7,8
 			;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 | tr '-' '0' || cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 |  | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
-		*) 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 4,7,8
+		*)     case $CONSUMER in  
+                                indiv) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8;;
+	                        comp) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
+                                *) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
+                       esac
 			;;
 	esac
 	
 else
 	case "$STATION" in 
 	        'hvb') 
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 2,7,8
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8
 		        ;;
 	        'hva') 
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
 		        ;;
 	        *)     case $CONSUMER in  
-                                indiv) cat $FILEPATH | tail -n+2 | tr - 0 || cut -d ';' -f 4,7,8;;
-	                        comp)cat $FILEPATH | tail -n+2 | tr - 0 | grep -E "^[0-9]+;[0]+;[0]+;[0-9]+;[0]+;" | cut -d ';' -f 4,7,8;;
-                                all);;
+                                'indiv') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8;;
+	                        'comp') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
+                                *) cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
                        esac
 		        
 		        ;;
