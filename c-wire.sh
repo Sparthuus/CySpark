@@ -1,6 +1,7 @@
 #!/bin/bash 
 # make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest do the same but at the end sort by capacity or load 
-#do we need to add helpshell at every eror
+#do we need to add helpshell at every error
+# i need to add the csv name file and put that in the temp directory
 
 clear
 echo
@@ -95,15 +96,15 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec  | .csv
 			;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[0-9]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[0-9]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec  | .csv
 			;;
 		*)     case $CONSUMER in  
-                                indiv) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8;;
-	                        comp) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
-                                *) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
+                                indiv) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
+	                        comp) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
+                                *) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
                        esac
 			;;
 	esac
@@ -111,15 +112,15 @@ if [ -z "$POWER" ]; then
 else
 	case "$STATION" in 
 	        'hvb') 
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec  | .csv
 		        ;;
 	        'hva') 
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec  | .csv
 		        ;;
 	        *)     case $CONSUMER in  
-                                'indiv') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8;;
-	                        'comp') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
-                                *) cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 ;;
+                                'indiv') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
+	                        'comp') cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
+                                *) cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec  | .csv;;
                        esac
 		        
 		        ;;
