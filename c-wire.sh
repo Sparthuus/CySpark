@@ -95,10 +95,10 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
-			cat "$FILEPATH" | tail -n+2 | grep | tr '-' '0' | cut -d ';' -f 2,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 2,7,8
 			;;
 		'hva') 
-			cat "$FILEPATH" | tail -n+2 |  | tr '-' '0' | cut -d ';' -f 3,7,8
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[0-9]+;[-]+;[0-9]+;[-]+; | tr '-' '0' | cut -d ';' -f 3,7,8
 			;;
 		*)     case $CONSUMER in  
                                 indiv) cat $FILEPATH | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8;;
