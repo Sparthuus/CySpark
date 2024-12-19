@@ -9,7 +9,6 @@
 int main(){
   intro();
   int v1, v2, v3; //id, capacity, load
-  int stationType;
   int totalLoad;
   int heightChanged = 0;  // To track height changes during AVL insertions
   
@@ -29,9 +28,9 @@ int main(){
     finish();
       
     freeAVL(pRoot);
-    int totalload = calculateLoadSum(pRoot, stationType);
+    int totalload = calculateLoadSum(pRoot, v1);
    
-    printf("The total load for stations of type %d is: %d kWh\n", stationType, totalLoad);
+    printf("The total load for stations of type %d is: %d kWh\n", v1, totalLoad);
      
     printf("Sum of consumption by type of station :\n");
    
