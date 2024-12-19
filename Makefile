@@ -1,6 +1,6 @@
 CC = gcc
 
-CF = -std=c11 -Iinclude
+CF = -std=c11 -Iheaders
 
 PC = pc/main.c pc/avl.c pc/total.c pc/tools.c
 
