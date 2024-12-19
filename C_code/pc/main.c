@@ -9,7 +9,7 @@
 
 int main(){
   intro();
-  int v1, v2, v3;
+  int v1, v2, v3; //id, capacity, load
   int stationType;
   int totalLoad;
   int heightChanged = 0;  // To track height changes during AVL insertions
