@@ -155,12 +155,12 @@ else
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
-				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hva_comp$POWER.csv
+				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp_$POWER.csv
 		        ;;
 	        'hva') 
 	 			touch "hva_comp_$POWER.csv"
-				echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp$POWER.csv
+				echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp_$POWER.csv
 		        ;;
 	        *)     
