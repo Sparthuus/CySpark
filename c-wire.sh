@@ -6,6 +6,8 @@
 #temp should be cleared at the start
 #the test dir is for us to put more test
 
+make
+
 clear
 echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
