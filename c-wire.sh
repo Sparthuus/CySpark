@@ -128,14 +128,16 @@ if [ -z "$POWER" ]; then
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > comp.csv
 					;;
 				*) 
-    					touch "lv_all.csv"
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > lv_all.csv
+                    temp="lv_all.csv"
+    				touch "$temp" | mv "$temp" temp
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > /temp/"$temp"
+                       
 					
 					;;
 			esac
 			;;
 	esac
-
+ 
 	
 else
 	case "$STATION" in 
@@ -158,11 +160,16 @@ else
 			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_comp_$POWER.csv
 									;;
                                 *) 
-									touch "lv_all_$POWER.csv"
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > lv_all_$POWER.csv
+                                    var="lv_all_$POWER.csv"
+									touch "$var" | mv "$var" temp 
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-]+;[-]+;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec > /temp/"$var"
     								;;
                        esac
 		        
 		        ;;
 	esac
+
 fi
+
+
+echo "You can find your sorted data in the program directory"
