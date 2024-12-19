@@ -25,8 +25,7 @@ int main(){
     } 
     printf("Displaying the AVL tree in order:\n");
     infix(pRoot); // Display the AVL tree in order
-    finish();
-      
+    
     freeAVL(pRoot);
        
   return 0;
