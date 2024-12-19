@@ -1,0 +1,8 @@
+Hello, here are few tips to help you use the Shell Script.
+First of all you have to write your path, choose your directory and select your second argument which are (hva, hvb or lv).
+The third argument can be comp (company), indiv (individual) or all (individual and company). They represent the consumer type.
+Be aware that in case your argument is hva and hvb, the only consumer type you can select is a company, any others consumer is false and will give you an error message.
+However, if you decided to choose lv, you can choose any type of consumers (comp, indiv or all).
+The last argument name is powerstation. It allows you to sort the information dependings of the power station's number.
+
+We hope this helped you! Have nice coding!
