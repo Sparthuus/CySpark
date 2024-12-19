@@ -5,8 +5,10 @@
 
 #temp should be cleared at the start
 #the test dir is for us to put more test
-
+cd  C_code
 make
+make clean
+cd ..
 
 clear
 echo
