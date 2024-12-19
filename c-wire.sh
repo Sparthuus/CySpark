@@ -5,8 +5,6 @@
 
 #temp should be cleared at the start
 #the test dir is for us to put more test
-truncate -s 0 temp
-for file in *.csv; do truncate -s 0 "$file"; done
 make
 
 echo
@@ -114,24 +112,30 @@ if [ -z "$POWER" ]; then
 		'hvb') 
 			
 			touch "hvb_comp.csv"
+			echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
+			exit 1
 			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec >> hvb_comp.csv
 			;;
 		'hva') 
 			touch "hva_comp.csv"
+			echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp.csv
 			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9]+;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec >> hva_comp.csv
 			;;
 		*) 
 			case $CONSUMER in  
 				indiv) 
-    					touch "lv_indiv.csv"
+					touch "lv_indiv.csv"
+					echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_indiv.csv
 					;;
 				comp) 
 					touch "lv_comp.csv"
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> comp.csv
+					echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_comp.csv
 					;;
 				*) 
                     temp="lv_all.csv"
+					echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
     				touch "$temp" | mv "$temp" temp
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> /temp/"$temp"
                        
@@ -146,26 +150,31 @@ else
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec >> hvb_comp_$POWER.csv
+				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hva_comp$POWER.csv
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp_$POWER.csv
 		        ;;
 	        'hva') 
 	 			touch "hva_comp_$POWER.csv"
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec >> hva_comp_$POWER.csv
+				echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp$POWER.csv
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp_$POWER.csv
 		        ;;
 	        *)     
 				case $CONSUMER in  
                                 'indiv') 
 									touch "lv_indiv_$POWER.csv"
+									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
 									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> lv_indiv_$POWER.csv
 									;;
 	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
+									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_touch_$POWER.csv
 			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> lv_comp_$POWER.csv
 									;;
                                 *) 
                                     var="lv_all_$POWER.csv"
+									echo "Station: lv Capacité: Comsommateurs (tous)) " > "$var"
 									touch "$var" | mv "$var" temp 
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;[-;-;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> /temp/"$var"
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> /temp/"$var"
     								;;
                        esac
 		        
