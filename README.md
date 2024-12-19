@@ -1,5 +1,4 @@
-# Project Tri_C
-
+# Cy Spark
 Project of Mathieu, Jude and Habilan. Year 2024-2025
 
 Welcome to our project named **"Cy Spark"**!
