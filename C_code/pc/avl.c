@@ -152,12 +152,8 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
         return pRoot;
     }
     if (h !=0){
-     // Update the balance
-    pRoot->balance += *h;
-
-    // Balance the AVL tree
+    pRoot->balance += *h;      // Update the balance
     pRoot = balanceAVL(pRoot);
-
     // Update the height change
     *h = (pRoot->balance == 0) ? 0 : 1;
     }
