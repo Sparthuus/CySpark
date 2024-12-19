@@ -15,7 +15,7 @@ int main(){
   AVL* pRoot = NULL;
       // Load data from the terminal
   printf("Loading data from the terminal...\n");
-    while(scanf("%d %d %d", &v1, &v2, &v3) == 3){
+    while(scanf("%d;%d;%d", &v1, &v2, &v3) == 3){
       if (v1 < 0 || v2 < 0 || v3 < 0){
           printf("Incorrect values");
       }
