@@ -19,7 +19,7 @@ int main(){
   printf("Loading data from the terminal...\n");
     while(scanf("%d %d %d", &v1, &v2, &v3) == 3){
       if (v1 < 0 || v2 < 0 || v3 < 0){
-          printf("Doesnt work");
+          printf("Incorrect values");
       }
       else {
         pRoot = insertAVL(pRoot, v1, v2, v3, &heightChanged);
