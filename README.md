@@ -1,6 +1,6 @@
 # Cy Spark
-Project of Mathieu, Jude and Habilan. Year 2024-2025
 Welcome to our project named **"Cy Spark"**!
+Project of Mathieu, Jude and Habilan. Year 2024-2025
 
 ## Help
 If at some point, you need help, the command `-h` is here for you.
