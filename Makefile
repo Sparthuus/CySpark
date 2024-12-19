@@ -5,7 +5,7 @@ CF = -std=c11 -Iheaders
 PC = pc/main.c pc/avl.c pc/tools.c 
 OBJ = $(PC:.c=.o)
 
-TARGET = SPARK
+TARGET = exec
 
 all: $(TARGET)
 
