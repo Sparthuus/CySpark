@@ -5,12 +5,7 @@
 
 #temp should be cleared at the start
 #the test dir is for us to put more test
-cd  C_code
 make
-make clean
-cd ..
-
-clear
 echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
@@ -114,6 +109,7 @@ fi
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
+			
 			touch "hvb_comp.csv"
 			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;[-]+;[-]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp.csv
 			;;
@@ -132,7 +128,7 @@ if [ -z "$POWER" ]; then
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;[0-9]+;[-]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > comp.csv
 					;;
 				*) 
-                    temp="lv_all.csv"
+                    		temp="lv_all.csv"
     				touch "$temp" | mv "$temp" temp
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > /temp/"$temp"
                        
@@ -177,3 +173,4 @@ fi
 
 
 echo "You can find your sorted data in the program directory"
+make clean
