@@ -32,7 +32,7 @@ int main(){
     freeAVL(pRoot);
     int totalload = calculateLoadSum(pRoot, stationType);
    
-    printf("The total load for stations of type %d is: %d\n", stationType, totalLoad);
+    printf("The total load for stations of type %d is: %d kWh\n", stationType, totalLoad);
      
     printf("Sum of consumption by type of station :\n");
    
