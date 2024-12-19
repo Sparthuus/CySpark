@@ -3,6 +3,9 @@
 #do we need to add helpshell at every error
 # i need to add the csv name file and put that in the temp directory
 
+#temp should be cleared at the start
+#the test dir is for us to put more test
+
 clear
 echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
