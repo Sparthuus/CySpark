@@ -15,7 +15,7 @@ void intro(){
          " ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝\n");
    
    
-  printf("\nWelcome to our programm [1mCy Spark ![m\n"
+  printf("\nWelcome to our programm \033[1;33mCy Spark !\033[0m\n"
          " Please wait patiently\n");
 }
 
