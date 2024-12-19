@@ -1,5 +1,4 @@
 #include "avl.h"
-#include "total.h"
 #include "tools.h"
 #include <stddef.h>
 #include <stdlib.h>
