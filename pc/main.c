@@ -21,7 +21,7 @@ int main(){
         pRoot = insertAVL(pRoot, id, c, l, &heightChanged);
     	}
     } 
-    
+    clear();
     infix(pRoot); // Display the AVL tree in order
     
     freeAVL(pRoot);
