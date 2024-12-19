@@ -36,9 +36,7 @@ if [ $# -ne 4 ] && [ $# -ne 3 ]; then
 fi
 
 if ! [ -d temp ] ; then
-    echo " temp directory doesn't exist"
-    echo
-    exit 33
+    mkdir temp
 fi
 
 
@@ -121,7 +119,6 @@ if [ -z "$POWER" ]; then
 			
 			touch "hvb_comp.csv"
 			echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
-			exit 1
 			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec >> hvb_comp.csv
 			;;
 		'hva') 
