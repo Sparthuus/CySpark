@@ -12,7 +12,7 @@ int main(){
   
   AVL* pRoot = NULL;
       // Load data from the terminal
-  printf("Loading data from the terminal...\n");
+ 
     while(scanf("%d;%d;%d\n", &id, &c, &l) == 3){
       if (id < 0 || c < 0 || l < 0){
           printf("Incorrect values");
