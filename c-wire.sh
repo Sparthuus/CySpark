@@ -27,7 +27,11 @@ if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
-
+if [ -d temp ] ; then
+    echo " temp directory doesn't exist"
+    echo
+    exit 33
+fi
 
 
 
