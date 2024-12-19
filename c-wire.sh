@@ -5,6 +5,8 @@
 
 #temp should be cleared at the start
 #the test dir is for us to put more test
+truncate -s 0 temp
+for file in *.csv; do truncate -s 0 "$file"; done
 make
 
 echo
