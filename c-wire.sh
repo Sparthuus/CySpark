@@ -36,6 +36,12 @@ if ! [ -f "$1" ] ; then
     exit 2
 fi
 
+if ! [ -x "./exec" ]; then
+    echo "error exec doesn't exit !"
+    echo
+    exit 32
+fi
+
 # store directory
 
 FILEPATH="$1" 
@@ -93,6 +99,7 @@ if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
 
 fi
 
+
 if [ -z "$POWER" ]; then
 	case "$STATION" in 
 		'hvb') 
@@ -121,7 +128,6 @@ if [ -z "$POWER" ]; then
 			esac
 			;;
 	esac
-fi
 
 	
 else
