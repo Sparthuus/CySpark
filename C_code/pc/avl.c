@@ -142,9 +142,16 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
         pRoot->pRight = insertAVL(pRoot->pRight, i, c, l, h);
     }
     else{
+        if (pRoot->capacity + c < 0){
+            printf("Error : capacity value is negative.\n");
+            exit(100);
+        }
+        pRoot->capacity += c;
+        pRoot->load += l;
         *h = 0;
         return pRoot;
     }
+    if (h !=0){
      // Update the balance
     pRoot->balance += *h;
 
@@ -153,6 +160,7 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
 
     // Update the height change
     *h = (pRoot->balance == 0) ? 0 : 1;
+    }
     return pRoot;
 }
 
