@@ -10,9 +10,8 @@ int main(){
   int heightChanged = 0;  // To track height changes during AVL insertions
   
   AVL* pRoot = NULL;
-      // Load data from the terminal
- 
-    while(scanf("%d;%d;%d\n", &id, &c, &l) == 3){
+      // Load data
+     while(scanf("%d;%d;%d\n", &id, &c, &l) == 3){
       if (id < 0 || c < 0 || l < 0){
           printf("Incorrect values");
       }
@@ -22,7 +21,7 @@ int main(){
     } 
     infix(pRoot); // Display the AVL tree in order
     
-    freeAVL(pRoot);
+    freeAVL(pRoot); //Free up memory
        
   return 0;
 }
