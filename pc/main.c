@@ -6,7 +6,6 @@
 
 
 int main(){
-  intro();
   int id, c, l; //id, capacity, load
   int heightChanged = 0;  // To track height changes during AVL insertions
   
@@ -21,7 +20,6 @@ int main(){
         pRoot = insertAVL(pRoot, id, c, l, &heightChanged);
     	}
     } 
-    clear();
     infix(pRoot); // Display the AVL tree in order
     
     freeAVL(pRoot);
