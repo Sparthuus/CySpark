@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-AVL* createAVL(int i, int c, int l){
+AVL* createAVL(int i, int c, int l){ //Function to create AVL
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
         exit(10);
@@ -154,13 +154,12 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
     if (h !=0){
     pRoot->balance += *h;      // Update the balance
     pRoot = balanceAVL(pRoot);
-    // Update the height change
-    *h = (pRoot->balance == 0) ? 0 : 1;
+    *h = (pRoot->balance == 0) ? 0 : 1; // Update the height change
     }
     return pRoot;
 }
 
-void infix(AVL* pRoot){
+void infix(AVL* pRoot){ 
     if(pRoot != NULL){
         infix(pRoot->pLeft);
         printf("%d;%d;%d\n", pRoot->id, pRoot->capacity, pRoot->load);
@@ -168,7 +167,7 @@ void infix(AVL* pRoot){
     }
 }
 
-void freeAVL(AVL* pRoot){
+void freeAVL(AVL* pRoot){ 
  if(pRoot != NULL){
     freeAVL(pRoot->pLeft);
     freeAVL(pRoot->pRight);
