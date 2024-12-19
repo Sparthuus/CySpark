@@ -116,7 +116,7 @@ if [ -z "$POWER" ]; then
 				*) 
     					touch "lv_all.csv"
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[-]+;[-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec > lv_all.csv
-					cat "$FILEPATH" | tail -n+2 |
+					
 					;;
 			esac
 			;;
