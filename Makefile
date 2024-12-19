@@ -2,7 +2,7 @@ CC = gcc
 
 CF = -std=c11 -Iheaders
 
-PC = pc/main.c pc/avl.c pc/tools.c 
+PC = pc/main.c pc/avl.c 
 OBJ = $(PC:.c=.o)
 
 TARGET = exec
