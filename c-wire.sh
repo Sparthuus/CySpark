@@ -95,7 +95,7 @@ if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) 
     echo
     exit 7
 fi
-
+echo
 echo "All parameters are valid."
 
 cp $FILEPATH input
@@ -202,7 +202,8 @@ else
 	esac
  
 	END=$(date +%s.%N)
-	DURATION=$(echo "$END - $START" | bc)
+	DURATION=$(echo "$END - $START" | bc) 
+    echo
     echo "Processing time: $DURATION seconds"
 	
 fi
