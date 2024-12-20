@@ -14,13 +14,17 @@ echo "Welcome user ! Feel free to use our programm. If you need any help you can
 echo
 
 
-
+# Iterate over all the arguments passed to the script
 for arg in "$@"; do
-        if [[ "$arg" == "-h" ]]; then  
-                cat HelpShell.txt
-                exit 0 
-        fi
+    # Check if the current argument matches "-h"
+    if [[ "$arg" == "-h" ]]; then
+        # Display the contents of the HelpShell.txt file to provide help information
+        cat HelpShell.txt
+        # Exit the script after displaying the help message
+        exit 0
+    fi
 done
+
 
 
 if [ $# -ne 4 ] && [ $# -ne 3 ]; then
