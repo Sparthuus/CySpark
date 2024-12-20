@@ -65,7 +65,7 @@ fi
 # store directory
 
 FILEPATH="$1" 
-
+COMMAND="$@"
 STATION=$2
 CONSUMER=$3
 POWER=$4 
@@ -122,9 +122,14 @@ if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
  	exit 8
 
 fi
-
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <command to execute>"
+    exit 1
+fi
 
 if [ -z "$POWER" ]; then
+	START=$(date +%s.%N)
+ 
 	case "$STATION" in 
 		'hvb') 
 			
@@ -161,8 +166,13 @@ if [ -z "$POWER" ]; then
 			;;
 	esac
  
+ 	END=$(date +%s.%N)
+	DURATION=$(echo "$END - $START" | bc)
+    echo "Processing time: $DURATION seconds"
 	
 else
+	START=$(date +%s.%N)
+ 
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
@@ -196,9 +206,16 @@ else
 		        
 		        ;;
 	esac
-
+ 
+	END=$(date +%s.%N)
+	DURATION=$(echo "$END - $START" | bc)
+    echo "Processing time: $DURATION seconds"
+	
 fi
 
+if [ $? -ne 0 ]; then
+    echo "Processing failed. Useful time: 0.0 seconds"
+fi
 
 echo "You can find your sorted data in the program directory"
 make clean
