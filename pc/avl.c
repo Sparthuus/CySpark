@@ -162,7 +162,7 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
 void infix(AVL* pRoot){ 
     if(pRoot != NULL){
         infix(pRoot->pLeft);
-        printf("%d:%d:%d\n", pRoot->id, pRoot->capacity, pRoot->load);
+        printf("%d:%d:%d\n", pRoot->id, pRoot->capacity, pRoot->load); //Display AVL in infix order
         infix(pRoot->pRight);
     }
 }
