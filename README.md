@@ -8,6 +8,10 @@ If at some point, you need help, the command `-h` is here for you.
 ## Instructions 
 Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hvb indiv`
 
-Instructions to compil and use of the programm :
+### Instructions to compil and use of the programm :
 - In the terminal : ` ddd`
 - 
+### Arguments
+- hvb comp
+- hvp indiv
+- lva etc
