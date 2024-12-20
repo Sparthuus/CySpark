@@ -19,6 +19,8 @@ echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
 echo
 
+
+
 for arg in "$@"; do
         if [[ "$arg" == "-h" ]]; then  
                 cat HelpShell.txt
@@ -38,6 +40,10 @@ fi
 if ! [ -d temp ] ; then
     mkdir temp
 fi
+if ! [ -d inpout ] ; then
+	mkdir inpout
+fi
+
 
 
 
@@ -136,7 +142,7 @@ if [ -z "$POWER" ]; then
 				comp) 
 					touch "lv_comp.csv"
 					echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-];-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_comp.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_comp.csv
 					;;
 				*) 
                     temp="lv_all.csv"
