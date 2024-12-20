@@ -39,12 +39,6 @@ if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
-# Check if the directory 'temp' does not exist
-if ! [ -d temp ] ; then
-    # If 'temp' does not exist, create it
-    mkdir temp
-fi
-
 # Check if the directory 'input' does not exist
 if ! [ -d input ] ; then
     # If 'input' does not exist, create it
