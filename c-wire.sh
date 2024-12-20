@@ -27,38 +27,57 @@ done
 
 
 
+# Check if the number of arguments passed to the script is not 4 or 3
 if [ $# -ne 4 ] && [ $# -ne 3 ]; then
+    # Display an error message indicating an incorrect number of arguments
     echo "Bad number of arguments!"
     echo
+    # Display the help file (HelpShell.txt) to guide the user
     cat HelpShell.txt
     echo
+    # Exit the script with a status code of 1, indicating an error
     exit 1
 fi
 
+# Check if the directory 'temp' does not exist
 if ! [ -d temp ] ; then
+    # If 'temp' does not exist, create it
     mkdir temp
 fi
+
+# Check if the directory 'input' does not exist
 if ! [ -d input ] ; then
-	mkdir input
-	
+    # If 'input' does not exist, create it
+    mkdir input
 fi
 
 
 
 
+# Check if the file specified by the first command-line argument ($1) does not exist
 if ! [ -f "$1" ] ; then
+    # If the file doesn't exist, print an error message
     echo "$1 does not exist !"
+    # Print a blank line
     echo
+    # Display the contents of the HelpShell.txt file for further instructions or information
     cat HelpShell.txt
+    # Print another blank line
     echo
+    # Exit the script with status code 2 to indicate an error
     exit 2
 fi
 
+# Check if the file 'exec' is not executable (or doesn't exist)
 if ! [ -x "./exec" ]; then
-    echo "error exec doesn't exit !"
+    # If 'exec' is not executable or doesn't exist, print an error message
+    echo "error exec doesn't exist !"
+    # Print a blank line
     echo
+    # Exit the script with status code 32 to indicate an error
     exit 32
 fi
+
 
 # store directory
 
@@ -73,57 +92,75 @@ STATION=${STATION,,}
 CONSUMER=${CONSUMER,,}
 
 
-# Checking all the parameters
+# Check if the value of the STATION variable is not "hva", "hvb", or "lv"
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
+    # If STATION is not one of the valid types, print an error message
     echo "Error: station type must be one of: hva, hvb, lv"
+    # Print a blank line
     echo
+    # Exit the script with status code 4 to indicate an invalid station type
     exit 4
 fi
 
-
+# Check if the value of the CONSUMER variable is not "all", "indiv", or "comp"
 if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "comp" ]; then
+    # If CONSUMER is not one of the valid types, print an error message
     echo "Error: consumer type must be one of: all, indiv, comp"
+    # Print a blank line
     echo
+    # Exit the script with status code 5 to indicate an invalid consumer type
     exit 5
 fi
 
-
+# Check if the STATION is "hva" and CONSUMER is either "indiv" or "all"
 if [[ "$STATION" == "hva" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
+    # If STATION is "hva" and CONSUMER is "indiv" or "all", print an error message
     echo "Error: you can't have hva AND indiv or all"
+    # Print a blank line
     echo
+    # Exit the script with status code 6 to indicate an invalid combination of parameters
     exit 6
 fi
 
+# Check if the STATION is "hvb" and CONSUMER is either "indiv" or "all"
 if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
+    # If STATION is "hvb" and CONSUMER is "indiv" or "all", print an error message
     echo "Error: you can't have hvb AND indiv or all"
+    # Print a blank line
     echo
+    # Exit the script with status code 7 to indicate an invalid combination of parameters
     exit 7
 fi
+
+# Print a blank line to separate the output
 echo
+# If all checks pass, print that all parameters are valid
 echo "All parameters are valid."
 
 cp $FILEPATH input
 
 FILEPATH="input/$1"
 
-
-
-
-#make before differant function for each
-#use cut to only have the column needed
-#use tail -n+1 to cut the first line
-#tail -n+1
+# Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
 if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
-	echo "Parameter value is incorrect!"
- 	cat HelpShell.txt
- 	echo
- 	exit 8
-
+    # If POWER is set and less than or equal to 0, print an error message
+    echo "Parameter value is incorrect!"
+    # Display the contents of HelpShell.txt for further instructions or help
+    cat HelpShell.txt
+    # Print a blank line
+    echo
+    # Exit the script with status code 8 to indicate an invalid POWER value
+    exit 8
 fi
+
+# Check if no command-line arguments are provided (i.e., $# equals 0)
 if [ $# -eq 0 ]; then
+    # If no arguments are provided, print usage instructions
     echo "Usage: $0 <command to execute>"
+    # Exit the script with status code 1 to indicate a missing argument
     exit 1
 fi
+
 
 if [ -z "$POWER" ]; then
 	START=$(date +%s.%N)
