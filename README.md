@@ -1,4 +1,4 @@
-# Cy Spark
+# Cy Spark ⭐
 Welcome to our project named **"Cy Spark"**!
 Project of Mathieu, Jude and Habilan. Year 2024-2025
 
