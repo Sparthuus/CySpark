@@ -199,7 +199,7 @@ if [ -z "$POWER" ]; then
 			;;
 	esac
 	END=$(date +%s)
-	DURATION=$(echo "$END - $START" | bc)
+	DURATION=$((END - $START)) 
     echo "Processing time: $DURATION seconds"
  
 	
@@ -207,7 +207,7 @@ else
     START=$(date +%s)
 	case "$STATION" in 
 	        'hvb') 
-				touch "hvb_comp_$POWER.csv"
+				touch "hvb_comp_$POWER.csv"   
 				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
 		        ;;
@@ -220,8 +220,8 @@ else
 				case $CONSUMER in  
                                 'indiv') 
 									touch "lv_indiv_$POWER.csv"
-									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
+									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv 
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
 									;;
 	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
@@ -241,7 +241,7 @@ else
 		        ;;
 	esac
 	END=$(date +%s)
-	DURATION=$(echo "$END - $START" | bc)
+	DURATION=$((END - $START)) 
     echo "Processing time: $DURATION seconds"
 
 fi
