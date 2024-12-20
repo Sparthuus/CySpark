@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# do in the terminal to execute chmod +x chrono_traitement.sh
 # Check if a command was provided
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <command to execute>"
