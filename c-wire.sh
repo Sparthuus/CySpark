@@ -39,8 +39,8 @@ if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
-if ! [ -d temp ] ; then
-    mkdir temp
+if ! [ -d tmp ] ; then
+    mkdir tmp
 fi
 if ! [ -d input ] ; then
 	mkdir input
