@@ -1,41 +1,41 @@
 #!/bin/bash
-# Pour le rendre éxecutable, utiliser la commande chmod +x chrono_traitement.sh
-# Vérifier si une commande a été fournie
+
+# Check if a command was provided
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <commande à exécuter>"
+    echo "Usage: $0 <command to execute>"
     exit 1
 fi
 
-# Stocker la commande à exécuter
+# Store the command to execute
 COMMAND="$@"
 
-# Phase de compilation ou préparation
-echo "Préparation des ressources..."
-# Placez ici les commandes de compilation ou de création de dossiers si nécessaire
-# Par exemple :
-# gcc -o programme programme.c
+# Preparation phase
+echo "Preparing resources..."
+# Add any necessary commands for compilation or folder creation here
+# For example:
+# gcc -o program program.c
 # mkdir -p output
 
-echo "Phase de traitement des données..."
+echo "Data processing phase..."
 
-# Chronométrer uniquement la phase de traitement
+# Measure only the processing phase
 START=$(date +%s.%N)
 $COMMAND
-EXIT_STATUS=$?  # Capturer le statut de sortie de la commande
+EXIT_STATUS=$?  # Capture the exit status of the command
 END=$(date +%s.%N)
 
-# Calculer la durée
+# Calculate the duration
 if [ $EXIT_STATUS -eq 0 ]; then
     DURATION=$(echo "$END - $START" | bc)
 else
     DURATION=0.0
 fi
 
-# Afficher les résultats
+# Display the results
 if [ $EXIT_STATUS -eq 0 ]; then
-    echo "Traitement terminé avec succès."
+    echo "Processing completed successfully."
 else
-    echo "Échec du traitement (erreur dans le programme ou les paramètres)."
+    echo "Processing failed (error in program or parameters)."
 fi
 
-echo "Temps utile de traitement : $DURATION secondes"
+echo "Useful processing time: $DURATION seconds"
