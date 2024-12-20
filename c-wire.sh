@@ -162,7 +162,7 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ -z "$POWER" ]; then
-    START=$(date +%s.%N)
+    START=$(date +%s)
     
 	case "$STATION" in 
 		'hvb') 
@@ -204,13 +204,13 @@ if [ -z "$POWER" ]; then
 			esac
 			;;
 	esac
-	END=$(date +%s.%N)
+	END=$(date +%s)
 	DURATION=$(echo "$END - $START" | bc)
     echo "Processing time: $DURATION seconds"
  
 	
 else
-    START=$(date +%s.%N)
+    START=$(date +%s)
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
@@ -246,7 +246,7 @@ else
 		        
 		        ;;
 	esac
-	END=$(date +%s.%N)
+	END=$(date +%s)
 	DURATION=$(echo "$END - $START" | bc)
     echo "Processing time: $DURATION seconds"
 
