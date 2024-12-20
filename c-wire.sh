@@ -4,7 +4,7 @@
 # i need to add the csv name file and put that in the temp directory for lv only
 # check if the input file is realy needed
 # if to file hvb comp with diferant data make sur to mouve the first on your personal desktup ( add to read me)
-#| sort -t -k3 -n
+
 
 #temp should be cleared at the start
 make
@@ -127,30 +127,30 @@ if [ -z "$POWER" ]; then
 			
 			touch "hvb_comp.csv"
 			echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec >> hvb_comp.csv
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec | sort -t ':' -k2 -n >> hvb_comp.csv
 			;;
 		'hva') 
 			touch "hva_comp.csv"
 			echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp.csv
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec >> hva_comp.csv
+			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec | sort -t ':' -k2 -n >> hva_comp.csv
 			;;
 		*) 
 			case $CONSUMER in  
 				indiv) 
 					touch "lv_indiv.csv"
 					echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_indiv.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_indiv.csv
 					;;
 				comp) 
 					touch "lv_comp.csv"
 					echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> lv_comp.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_comp.csv
 					;;
 				*) 
                     temp="lv_all.csv"
 					echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
     				touch "$temp" | mv "$temp" temp
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec >> /temp/"$temp"
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec  >> /temp/"$temp"
                        
 					
 					;;
@@ -164,24 +164,24 @@ else
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
 				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp_$POWER.csv
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec | sort -t ':' -k2 -n > hvb_comp_$POWER.csv
 		        ;;
 	        'hva') 
 	 			touch "hva_comp_$POWER.csv"
 				echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec > hva_comp_$POWER.csv
+		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./exec | sort -t ':' -k2 -n > hva_comp_$POWER.csv
 		        ;;
 	        *)     
 				case $CONSUMER in  
                                 'indiv') 
 									touch "lv_indiv_$POWER.csv"
 									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> lv_indiv_$POWER.csv
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k3 -n >> lv_indiv_$POWER.csv
 									;;
 	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
 									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
-			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> lv_comp_$POWER.csv
+			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k3 -n >> lv_comp_$POWER.csv
 									;;
                                 *) 
                                     var="lv_all_$POWER.csv"
