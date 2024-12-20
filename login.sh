@@ -1,6 +1,7 @@
 #!/bin/bash
+
 speed=0.2
-echo "
+p="
   ██████╗██╗   ██╗    ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗ 
  ██╔════╝╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝
  ██║      ╚████╔╝     ███████╗██████╔╝███████║██████╔╝█████╔╝ 
@@ -9,26 +10,32 @@ echo "
   ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝"
                       
 while true; in
+           echo "$p"
            echo "                   █▒▒▒▒▒▒▒▒▒                    "
            sleep$speed
            clear 
-           
+
+           echo "$p"
            echo "                   ███▒▒▒▒▒▒▒                    "
            sleep$speed
            clear
-       
+
+           echo "$p"
            echo "                   ▒▒██▒▒▒▒▒▒                    " 
            sleep$speed
            clear   
-           
+
+           echo "$p"
            echo "                   ▒▒▒███▒▒▒▒                    "
            sleep$speed
            clear  
-           
+
+           echo "$p"
            echo "                   ▒▒▒▒▒███▒▒                    "
            sleep$speed
            clear
-           
+
+           echo "$p"
            echo "                   ▒▒▒▒▒▒▒███                    "
            sleep$speed
            clear
