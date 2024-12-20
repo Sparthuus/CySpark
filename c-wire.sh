@@ -3,6 +3,8 @@
 #do we need to add helpshell at every error
 # i need to add the csv name file and put that in the temp directory for lv only
 # check if the input file is realy needed
+# if to file hvb comp with diferant data make sur to mouve the first on your personal desktup ( add to read me)
+#| sort -t -k3 -n
 
 #temp should be cleared at the start
 make
