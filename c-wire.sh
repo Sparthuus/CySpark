@@ -123,7 +123,7 @@ fi
 
 if [ -z "$POWER" ]; then
 	START=$(date +%s.%N)
- 
+ 	bash codeShell/intro.sh
 	case "$STATION" in 
 		'hvb') 
 			
