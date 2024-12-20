@@ -2,14 +2,18 @@
 # make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest do the same but at the end sort by capacity or load 
 #do we need to add helpshell at every error
 # i need to add the csv name file and put that in the temp directory for lv only
-# check if the input file is realy needed
-# if to file hvb comp with diferant data make sur to mouve the first on your personal desktup ( add to read me)
 
-
+# if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
 #temp should be cleared at the start
 make
 
-bash login.sh
+echo "
+ ██████╗██╗   ██╗    ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔════╝╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝
+██║      ╚████╔╝     ███████╗██████╔╝███████║██████╔╝█████╔╝ 
+██║       ╚██╔╝      ╚════██║██╔═══╝ ██╔══██║██╔══██╗██╔═██╗ 
+╚██████╗   ██║       ███████║██║     ██║  ██║██║  ██║██║  ██╗
+ ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝"
           
 echo
 echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
@@ -33,11 +37,12 @@ if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
-if ! [ -d tmp ] ; then
-    mkdir tmp
+if ! [ -d temp ] ; then
+    mkdir temp
 fi
 if ! [ -d input ] ; then
 	mkdir input
+	
 fi
 
 
@@ -60,6 +65,7 @@ fi
 # store directory
 
 FILEPATH="$1" 
+
 STATION=$2
 CONSUMER=$3
 POWER=$4 
@@ -98,6 +104,9 @@ fi
 
 echo "All parameters are valid."
 
+cp $FILEPATH input
+
+FILEPATH="input/$1"
 
 
 
@@ -133,7 +142,7 @@ if [ -z "$POWER" ]; then
 				indiv) 
 					touch "lv_indiv.csv"
 					echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;-;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_indiv.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-; [0-9-]+;[0-9]+;-;[0-9]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_indiv.csv
 					;;
 				comp) 
 					touch "lv_comp.csv"
@@ -170,12 +179,12 @@ else
                                 'indiv') 
 									touch "lv_indiv_$POWER.csv"
 									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k3 -n >> lv_indiv_$POWER.csv
+									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
 									;;
 	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
 									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
-			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k3 -n >> lv_comp_$POWER.csv
+			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec | sort -t -k2 -n >> lv_comp_$POWER.csv
 									;;
                                 *) 
                                     var="lv_all_$POWER.csv"
