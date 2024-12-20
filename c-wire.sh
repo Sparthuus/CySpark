@@ -1,10 +1,10 @@
 #!/bin/bash 
 # make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest do the same but at the end sort by capacity or load 
 #do we need to add helpshell at every error
-# i need to add the csv name file and put that in the temp directory
+# i need to add the csv name file and put that in the temp directory for lv only
+# check if the input file is realy needed
 
 #temp should be cleared at the start
-#the test dir is for us to put more test
 make
 
 echo "
@@ -40,8 +40,8 @@ fi
 if ! [ -d temp ] ; then
     mkdir temp
 fi
-if ! [ -d inpout ] ; then
-	mkdir inpout
+if ! [ -d input ] ; then
+	mkdir input
 fi
 
 
@@ -161,7 +161,7 @@ else
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"
-				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
+				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
 		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./exec > hvb_comp_$POWER.csv
 		        ;;
 	        'hva') 
@@ -178,7 +178,7 @@ else
 									;;
 	                       		 'comp')
 									touch "lv_comp_$POWER.csv"
-									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_touch_$POWER.csv
+									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
 			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./exec >> lv_comp_$POWER.csv
 									;;
                                 *) 
