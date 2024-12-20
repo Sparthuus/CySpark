@@ -175,7 +175,7 @@ if [ -z "$POWER" ]; then
 				indiv) 
 					touch "lv_indiv.csv"
 					echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-; [0-9-]+;[0-9]+;-;[0-9-]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_indiv.csv
+					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./exec | sort -t ':' -k2 -n >> lv_indiv.csv
 					;;
 				comp) 
 					touch "lv_comp.csv"
