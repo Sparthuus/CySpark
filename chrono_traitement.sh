@@ -8,7 +8,7 @@ fi
 
 # Store the command to execute
 COMMAND="$@"
-
+echo
 # Preparation phase
 echo "Preparing resources..."
 # Add any necessary commands for compilation or folder creation here
@@ -33,9 +33,10 @@ fi
 
 # Display the results
 if [ $EXIT_STATUS -eq 0 ]; then
+    echo
     echo "Processing completed successfully."
 else
     echo "Processing failed (error in program or parameters)."
 fi
-
+echo
 echo "Useful processing time: $DURATION seconds"
