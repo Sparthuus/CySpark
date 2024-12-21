@@ -32,7 +32,7 @@ bash c-wire.sh c-wire_v25.dat hvb comp
 
 
 ### - 🧹Cleaning up
-Our program automatically clean after utilization (`make clean` command) through `c-wire.h`.
+Our program automatically clean after use (`make clean` command) through `c-wire.h`.
 ## Collaborators 
 <a href="https://github.com/Sparthuus/CySpark/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Sparthuus/CySpark" alt="Contributors" />
