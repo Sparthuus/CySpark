@@ -8,7 +8,6 @@ cd ..
 
 bash codeShell/intro.sh
           
-
 # Iterate over all the arguments passed to the script
 for arg in "$@"; do
     # Check if the current argument matches "-h"
@@ -39,9 +38,6 @@ if ! [ -d input ] ; then
     # If 'input' does not exist, create it
     mkdir input
 fi
-
-
-
 
 # Check if the file specified by the first command-line argument ($1) does not exist
 if ! [ -f "$1" ] ; then
