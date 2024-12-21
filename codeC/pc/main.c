@@ -24,7 +24,6 @@ int main(){
     infix(pRoot); // Display the AVL tree in order
     
     freeAVL(pRoot); //Free up memory
-  
-       
+         
   return 0;
 }
