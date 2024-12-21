@@ -7,7 +7,7 @@
 AVL* createAVL(int i, long long c, long long l){ //Function to create AVL
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
-        exit(10);
+        exit(1);
     }
     pNew->load = l;
     pNew->id= i;
@@ -34,7 +34,7 @@ int max3(int a, int b, int c){
 
 AVL* rotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
-        exit(200);
+        exit(2);
     }
     AVL* pPivot  = pRoot->pRight;
     pRoot->pRight = pPivot->pLeft;
@@ -49,7 +49,7 @@ AVL* rotateLeft(AVL* pRoot){
 
 AVL* rotateRight(AVL* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
-        exit(201);
+        exit(3);
     }
     // update pointeurs
     AVL* pPivot  = pRoot->pLeft;
@@ -67,7 +67,7 @@ AVL* rotateRight(AVL* pRoot){
 
 AVL* doubleRotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
-        exit(202);
+        exit(4);
     }
     pRoot->pRight = rotateRight(pRoot->pRight);
     return rotateLeft(pRoot);
@@ -75,7 +75,7 @@ AVL* doubleRotateLeft(AVL* pRoot){
 
 AVL* doubleRotateRight(AVL* pRoot){
     if(pRoot==NULL || pRoot->pLeft == NULL){
-        exit(203);
+        exit(5);
     }
     pRoot->pLeft = rotateLeft(pRoot->pLeft);
     return rotateRight(pRoot);
@@ -83,12 +83,12 @@ AVL* doubleRotateRight(AVL* pRoot){
 
 AVL* balanceAVL(AVL* pRoot){
     if(pRoot == NULL){
-        exit(205);
+        exit(6);
     }
     
     if(pRoot->balance >= 2){
         if(pRoot->pRight == NULL){
-            exit(206);
+            exit(7);
         }
         if(pRoot->pRight->balance >= 0){
             // LEFT SIMPLE
@@ -101,7 +101,7 @@ AVL* balanceAVL(AVL* pRoot){
     }
     else if(pRoot->balance <= -2){
         if(pRoot->pLeft == NULL){
-            exit(207);
+            exit(8);
         }
         if(pRoot->pLeft->balance <= 0){
             // RIGHT SIMPLE
@@ -146,14 +146,14 @@ AVL* insertAVL(AVL* pRoot, int i, long long c, long long l, int *h){
     else{
         if (pRoot->capacity + c < 0){
             printf("Error : capacity value is negative.\n");
-            exit(100);
+            exit(9);
         }
         pRoot->capacity += c;
         pRoot->load += l;
         *h = 0;
         return pRoot;
     }
-    if (h !=0){
+    if (*h !=0){
     pRoot->balance += *h;      // Update the balance
     pRoot = balanceAVL(pRoot);
     *h = (pRoot->balance == 0) ? 0 : 1; // Update the height change
