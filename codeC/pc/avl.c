@@ -130,7 +130,7 @@ int searchAVL(AVL* pRoot, int i){
     }
 }
 
-AVL* insertAVL(AVL* pRoot, int i, long long c, long long l, long long *h){
+AVL* insertAVL(AVL* pRoot, int i, long long c, long long l, int *h){
     if(pRoot == NULL){
         // insert
         *h = 1;
