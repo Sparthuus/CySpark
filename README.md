@@ -3,7 +3,7 @@ Welcome to our project named **"Cy Spark"**!
 Project of Mathieu, Jude and Habilan. Year 2024-2025<br>
 ## Warning
 Our program may take time to load the data (Between 20-45 seconds). We are sorry for the waiting time.
-
+Don't forget to save the result file before the next utilization, It will be delete after. 
 ## Help
 If at some point, you need help, you can display the help manual with the command : <br>
 ```
@@ -19,14 +19,15 @@ Before, make sure to use Linux or to have downloaded a Linux terminal
 `[Power Plant ID]`: (Optional) ID of the power plant, must be a positive number.<br>
 
 ### - Instructions to compil and use of the program :
-- In the `terminal` :
+In the `terminal` :
 ```sh 
-bash c-wire.sh <your file> <station type> <consumer type>
+bash c-wire.sh <your data file> <station type> <consumer type>
 ```
 Example :
 ```sh
 bash c-wire.sh c-wire_v25.dat hvb comp
 ```
+
 
 ### - Cleaning up
 Our program automatically clean after utilization (`make clean` command) through `c-wire.h`.
