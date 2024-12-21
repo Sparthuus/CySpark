@@ -1,28 +1,26 @@
 #!/bin/bash
 
-# if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
+#creation of the executable file
 clear
 cd codeC
 make
 cd ..
 
+# displaying the logo
 bash codeShell/intro.sh
           
 
-# Iterate over all the arguments passed to the script
+# Check if any argument matches "-h" and display the help
 for arg in "$@"; do
-    # Check if the current argument matches "-h"
     if [[ "$arg" == "-h" ]]; then
-        # Display the contents of the HelpShell.txt file to provide help information
         cat HelpShell.txt
-        # Exit the script after displaying the help message
         exit 0
     fi
 done
 
 
 
-# Check if the number of arguments passed to the script is not 4 or 3
+# Check if the number of arguments passed are differant than 4 or 3
 if [ $# -ne 4 ] && [ $# -ne 3 ]; then
     # Display an error message indicating an incorrect number of arguments
     echo "Bad number of arguments!"
