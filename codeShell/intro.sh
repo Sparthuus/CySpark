@@ -8,7 +8,7 @@ p="
  ╚██████╗   ██║       ███████║██║     ██║  ██║██║  ██║██║  ██╗
   ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝"
                       
-   echo "\033[1;33m$p\033[0m"
+   echo "$p"
    echo
    echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
    echo
