@@ -62,7 +62,9 @@ if ! [ -x "./codeC/exec" ]; then
     # If 'exec' is not executable or doesn't exist, print an error message
     echo "error exec doesn't exist !"
     echo
-    make
+    cd codeC
+	make
+	cd ..
 fi
 
 
