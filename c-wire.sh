@@ -122,9 +122,9 @@ if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) 
 fi
 
 # Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
-if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
+if [ -n "$POWER" ] && [ $POWER -le 0 ] || [[ ! "$POWER" =~ ^[0-9]+$ ]]; then
     # If POWER is set and less than or equal to 0, print an error message
-    echo "Parameter value is incorrect!"
+    echo "4th parameter is incorrect!"
     # Display the contents of HelpShell.txt for further instructions or help
     cat HelpShell.txt
     # Print a blank line
@@ -143,17 +143,7 @@ cp $FILEPATH input
 
 FILEPATH="input/$1"
 
-# Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
-if [ -n "$POWER" ] && [ $POWER -le 0 ]  || [[ ! "$power_plant_id" =~ ^[0-9]+$ ]]; then
-    # If POWER is set and less than or equal to 0, print an error message
-    echo "Parameter value is incorrect!"
-    # Display the contents of HelpShell.txt for further instructions or help
-    cat HelpShell.txt
-    # Print a blank line
-    echo
-    # Exit the script with status code 8 to indicate an invalid POWER value
-    exit 8
-fi
+
 
 # Check if no command-line arguments are provided (i.e., $# equals 0)
 if [ $# -eq 0 ]; then
