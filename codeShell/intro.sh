@@ -8,4 +8,7 @@ p="
  ╚██████╗   ██║       ███████║██║     ██║  ██║██║  ██║██║  ██╗
   ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝"
                       
-   printf "\033[1;33m$p\033[0m"
+   echo "\033[1;33m$p\033[0m"
+   echo
+   echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
+   echo
