@@ -121,37 +121,35 @@ if [ -z "$POWER" ]; then
         'hvb')
             
             touch "hvb_comp.csv"
-            echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
+            echo "Station hvb: Capacity: Consumers (companies) " > hvb_comp.csv
             cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hvb_comp.csv
             ;;
         'hva')
             touch "hva_comp.csv"
-            echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp.csv
+            echo "Station hva: Capacity: Consumers (companies) " > hva_comp.csv
             cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp.csv
             ;;
         *)
             case $CONSUMER in
                 indiv)
                     touch "lv_indiv.csv"
-                    echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
+                    echo "Station lv : Capacity: Consumers (individual) " > lv_indiv.csv
                     cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_indiv.csv
                     ;;
                 comp)
                     touch "lv_comp.csv"
-                    echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
+                    echo "Station lv: Capacity: Consumers (companies) " > lv_comp.csv
                     cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_comp.csv
                     ;;
                 *)
                     temp="lv_all.csv"
-                    echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
+                    echo "Station lv: Capacity: Consumers (all) " > "$temp"
                     touch "$temp"
                     cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec  >> "$temp"
                     awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax.csv
                     awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax.csv
                     
-                     
- 
-                       
+                                           
                     
                     ;;
             esac
@@ -184,29 +182,29 @@ else
     case "$STATION" in
             'hvb')
                 touch "hvb_comp_$POWER.csv"
-                echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
+                echo "Station hvb: Capacity: Consumers (companies) " > hvb_comp_$POWER.csv
                 cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
                 ;;
             'hva')
                  touch "hva_comp_$POWER.csv"
-                echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
+                echo "Station hva: Capacity: Consumers (companies) " > hva_comp_$POWER.csv
                 cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp_$POWER.csv
                 ;;
             *)
                 case $CONSUMER in
                                 'indiv')
                                     touch "lv_indiv_$POWER.csv"
-                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
+                                    echo "Station lv: Capacity: Consumers (individuals) " > lv_indiv_$POWER.csv
                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_indiv_$POWER.csv
                                     ;;
                                     'comp')
                                     touch "lv_comp_$POWER.csv"
-                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv # grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;"
+                                    echo "Station lv: Capacity: Consumers (individuals) " > lv_comp_$POWER.csv # grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;"
                                      cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec |  sort -t ':' -k2 -n >> lv_comp_$POWER.csv
                                     ;;
                                 *)
                                     var="lv_all_$POWER.csv"
-                                    echo "Station: lv Capacité: Comsommateurs (tous)) " > "$var"
+                                    echo "Station lv: Capacity: Consumerss (all)) " > "$var"
                                     touch "$var" | mv "$var" temp
                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;"| tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec>> "$var"
                                     awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$var" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax_$POWER.csv
