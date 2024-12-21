@@ -31,7 +31,6 @@ int max3(int a, int b, int c){
     return max2(a, max2(b, c));
 }
 
-
 AVL* rotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
         exit(2);
