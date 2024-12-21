@@ -5,13 +5,14 @@
 
 
 int main(){
-  int id
-  long long c, l; //id, capacity, load/consumption
+  int id; //id
+  long long c;
+  long long l; //capacity, load/consumption
   int heightChanged = 0;  // To track height changes during AVL insertions
   
   AVL* pRoot = NULL;
       // Load data
-     while(scanf("%d;%d;%d\n", &id, &c, &l) == 3){
+     while(scanf("%lld;%lld;%lld\n", &id, &c, &l) == 3){
       if (id < 0 || c < 0 || l < 0){
           printf("Incorrect values");
       }
