@@ -156,7 +156,8 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ -z "$POWER" ]; then
-    START=$(date +%s)
+   START_SEC=$(date +%s)         # Time in seconds
+    START_NANO=$(date +%N)        # Time in nanoseconds
     
 	case "$STATION" in 
 		'hvb') 
@@ -198,13 +199,30 @@ if [ -z "$POWER" ]; then
 			esac
 			;;
 	esac
-	END=$(date +%s)
-	DURATION=$((END - $START)) 
+	END_SEC=$(date +%s)           # Time in seconds at the end
+    END_NANO=$(date +%N)          # Nanoseconds at the end
+
+    # Calculate the duration in seconds with correct precision
+    DURATION_SEC=$((END_SEC - START_SEC))
+    DURATION_NANO=$((END_NANO - START_NANO))
+
+    # Adjust if the nanoseconds difference is negative (indicating the second has passed)
+    if [ "$DURATION_NANO" -lt 0 ]; then
+        DURATION_SEC=$((DURATION_SEC - 1))
+        DURATION_NANO=$((DURATION_NANO + 1000000000))
+    fi
+
+    # Convert nanoseconds to seconds
+    DURATION=$(echo "$DURATION_SEC + $DURATION_NANO / 1000000000" | bc)
+
     echo "Processing time: $DURATION seconds"
+
  
 	
 else
-    START=$(date +%s)
+    START_SEC=$(date +%s)         # Time in seconds
+    START_NANO=$(date +%N)        # Time in nanoseconds
+
 	case "$STATION" in 
 	        'hvb') 
 				touch "hvb_comp_$POWER.csv"   
@@ -240,9 +258,24 @@ else
 		        
 		        ;;
 	esac
-	END=$(date +%s)
-	DURATION=$((END - $START)) 
+	END_SEC=$(date +%s)           # Time in seconds at the end
+    END_NANO=$(date +%N)          # Nanoseconds at the end
+
+    # Calculate the duration in seconds with correct precision
+    DURATION_SEC=$((END_SEC - START_SEC))
+    DURATION_NANO=$((END_NANO - START_NANO))
+
+    # Adjust if the nanoseconds difference is negative (indicating the second has passed)
+    if [ "$DURATION_NANO" -lt 0 ]; then
+        DURATION_SEC=$((DURATION_SEC - 1))
+        DURATION_NANO=$((DURATION_NANO + 1000000000))
+    fi
+
+    # Convert nanoseconds to seconds
+    DURATION=$(echo "$DURATION_SEC + $DURATION_NANO / 1000000000" | bc)
+
     echo "Processing time: $DURATION seconds"
+
 
 fi
 
