@@ -1,6 +1,5 @@
 #!/bin/bash
 
-speed=0.2
 p="
   ██████╗██╗   ██╗    ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗ 
  ██╔════╝╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝
@@ -9,36 +8,4 @@ p="
  ╚██████╗   ██║       ███████║██║     ██║  ██║██║  ██║██║  ██╗
   ╚═════╝   ╚═╝       ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝"
                       
-for i in {1..2}; do
-
-           echo "$p"
-           echo "                   	   █▒▒▒▒▒▒▒▒▒                    "
-           sleep $speed
-           clear 
-
-           echo "$p"
-           echo "                   	   ███▒▒▒▒▒▒▒                    "
-           sleep $speed
-           clear
-
-           echo "$p"
-           echo "                   	   ▒▒██▒▒▒▒▒▒                    " 
-           sleep $speed
-           clear   
-
-           echo "$p"
-           echo "                   	   ▒▒▒███▒▒▒▒                    "
-           sleep $speed
-           clear  
-
-           echo "$p"
-           echo "                   	   ▒▒▒▒▒███▒▒                    "
-           sleep $speed
-           clear
-
-           echo "$p"
-           echo "                   	   ▒▒▒▒▒▒▒███                    "
-           sleep $speed
-           clear
-   done
-   echo "$p"
+   printf "\033[1;33m$p\033[0m"
