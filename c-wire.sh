@@ -1,8 +1,10 @@
 #!/bin/bash 
-#do we need to add helpshell at every error
+
 # if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
 
+cd codeC
 make
+cd ..
 
 bash codeShell/intro.sh
           
@@ -277,4 +279,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "You can find your sorted data in the program directory"
+cd codeC
 make clean
+cd ..
