@@ -14,50 +14,40 @@ bash codeShell/intro.sh
 for arg in "$@"; do
     if [[ "$arg" == "-h" ]]; then
         cat HelpShell.txt
-        exit 0
+        exit 1
     fi
 done
 
 
 
-# Check if the number of arguments passed are differant than 4 or 3
+# Check if the number of arguments passed are different than 4 or 3
 if [ $# -ne 4 ] && [ $# -ne 3 ]; then
-    # Display an error message indicating an incorrect number of arguments
     echo "Bad number of arguments!"
     echo
-    # Display the help file (HelpShell.txt) to guide the user
     cat HelpShell.txt
     echo
-    # Exit the script with a status code of 1, indicating an error
-    exit 1
+    exit 2
 fi
 
 # Check if the directory 'input' does not exist
 if ! [ -d input ] ; then
-    # If 'input' does not exist, create it
     mkdir input
 fi
 
 
 
 
-# Check if the file specified by the first command-line argument ($1) does not exist
+# Check if the first argument is a file or not
 if ! [ -f "$1" ] ; then
-    # If the file doesn't exist, print an error message
     echo "$1 does not exist !"
-    # Print a blank line
     echo
-    # Display the contents of the HelpShell.txt file for further instructions or information
     cat HelpShell.txt
-    # Print another blank line
     echo
-    # Exit the script with status code 2 to indicate an error
-    exit 2
+    exit 3
 fi
 
 # Check if the file 'exec' is not executable (or doesn't exist)
 if ! [ -x "./codeC/exec" ]; then
-    # If 'exec' is not executable or doesn't exist, print an error message
     echo "error exec doesn't exist !"
     echo
     cd codeC
@@ -66,8 +56,7 @@ if ! [ -x "./codeC/exec" ]; then
 fi
 
 
-# store directory
-
+# store arguments
 FILEPATH="$1"
 COMMAND="$@"
 STATION=$2
@@ -81,46 +70,33 @@ CONSUMER=${CONSUMER,,}
 
 # Check if the value of the STATION variable is not "hva", "hvb", or "lv"
 if [ "$STATION" != "hva" ] && [ "$STATION" != "hvb" ] && [ "$STATION" != "lv" ]; then
-    # If STATION is not one of the valid types, print an error message
     echo "Error: station type must be one of: hva, hvb, lv"
-    # Print a blank line
     echo
-    # Exit the script with status code 4 to indicate an invalid station type
     exit 4
 fi
 
 # Check if the value of the CONSUMER variable is not "all", "indiv", or "comp"
 if [ "$CONSUMER" != "all" ] && [ "$CONSUMER" != "indiv" ] && [ "$CONSUMER" != "comp" ]; then
-    # If CONSUMER is not one of the valid types, print an error message
     echo "Error: consumer type must be one of: all, indiv, comp"
-    # Print a blank line
     echo
-    # Exit the script with status code 5 to indicate an invalid consumer type
     exit 5
 fi
 
 # Check if the STATION is "hva" and CONSUMER is either "indiv" or "all"
 if [[ "$STATION" == "hva" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
-    # If STATION is "hva" and CONSUMER is "indiv" or "all", print an error message
     echo "Error: you can't have hva AND indiv or all"
-    # Print a blank line
     echo
-    # Exit the script with status code 6 to indicate an invalid combination of parameters
     exit 6
 fi
 
 # Check if the STATION is "hvb" and CONSUMER is either "indiv" or "all"
 if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) ]]; then
-    # If STATION is "hvb" and CONSUMER is "indiv" or "all", print an error message
     echo "Error: you can't have hvb AND indiv or all"
-    # Print a blank line
     echo
-    # Exit the script with status code 7 to indicate an invalid combination of parameters
     exit 7
 fi
-
+# Check if the last argument is a number
 if [ -n "$POWER" ]; then
-    # Check if POWER is not an integer or is <= 0
     if ! [[ "$POWER" =~ ^-?[0-9]+$ ]] || [ "$POWER" -le 0 ]; then
         echo "4th parameter is incorrect!"
         cat HelpShell.txt
@@ -129,30 +105,18 @@ if [ -n "$POWER" ]; then
     fi
 fi
 
-# Print a blank line to separate the output
 echo
-
-# If all checks pass, print that all parameters are valid
 echo "All parameters are valid."
 
 cp $FILEPATH input
-
 FILEPATH="input/$1"
 
-
-
-# Check if no command-line arguments are provided (i.e., $# equals 0)
-if [ $# -eq 0 ]; then
-    # If no arguments are provided, print usage instructions
-    echo "Usage: $0 <command to execute>"
-    # Exit the script with status code 1 to indicate a missing argument
-    exit 1
-fi
 
 if [ -z "$POWER" ]; then
    START_SEC=$(date +%s)         # Time in seconds
     START_NANO=$(date +%N)        # Time in nanoseconds
-    
+
+# Thz switch case checks depending on the values of the STATION and CONSUMER variables, it generates different CSV files that summarize consumer capacity data.
     case "$STATION" in
         'hvb')
             
