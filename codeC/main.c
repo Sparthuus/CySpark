@@ -18,6 +18,7 @@ int main(){
         pRoot = insertAVL(pRoot, id, c, l, &heightChanged);
     	}
     } 
+  
     infix(pRoot); // Display the AVL tree in order
     
     freeAVL(pRoot); //Free up memory
