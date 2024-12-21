@@ -10,6 +10,7 @@ typedef struct _avl {
     int balance;
 } AVL;
 
+//Functions :
 AVL* createAVL(int i, long long c, long long l);
 AVL* rotateLeft(AVL* pRoot);
 AVL* rotateRight(AVL* pRoot);
