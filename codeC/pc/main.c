@@ -5,7 +5,8 @@
 
 
 int main(){
-  int id, c, l; //id, capacity, load/consumption
+  int id
+  long long c, l; //id, capacity, load/consumption
   int heightChanged = 0;  // To track height changes during AVL insertions
   
   AVL* pRoot = NULL;
