@@ -9,10 +9,6 @@ make
 
 bash codeShell/intro.sh
           
-echo
-echo "Welcome user ! Feel free to use our programm. If you need any help you can type "-h"."
-echo
-
 
 # Iterate over all the arguments passed to the script
 for arg in "$@"; do
