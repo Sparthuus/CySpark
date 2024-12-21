@@ -3,7 +3,7 @@ Welcome to our project **"Cy Spark"**!
 Project of Mathieu, Jude and Habilan. Year 2024-2025<br>
 
 ## ⚠️Warning
-Our program may take time to load the data (Between 20-45 seconds). We are sorry for the waiting time.<br>
+Our program **may** take time to load the data (Between 20-45 seconds). We are sorry for the waiting time.<br>
 Don't forget to save the result file before the next use, It will be delete after. 
 
 ## ❔Help
