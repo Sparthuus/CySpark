@@ -1,6 +1,8 @@
 # Cy Spark ⭐
 Welcome to our project named **"Cy Spark"**! 
-Project of Mathieu, Jude and Habilan. Year 2024-2025
+Project of Mathieu, Jude and Habilan. Year 2024-2025<br>
+## Warning
+Our program may take time to load the data (Between 20-45 seconds)
 
 ## Help
 If at some point, you need help, you can display the help manual with the command : <br>
