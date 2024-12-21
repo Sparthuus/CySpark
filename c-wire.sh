@@ -61,10 +61,8 @@ fi
 if ! [ -x "./codeC/exec" ]; then
     # If 'exec' is not executable or doesn't exist, print an error message
     echo "error exec doesn't exist !"
-    # Print a blank line
     echo
-    # Exit the script with status code 32 to indicate an error
-    exit 32
+    make
 fi
 
 
