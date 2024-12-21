@@ -11,6 +11,9 @@ Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hvb indiv`
 ### Instructions to compil and use of the programm :
 - In the terminal : ` ddd`
 - 
+
+### Cleaning up
+Our programm automatically clean after utilization (`make clean` command) through `c-wire.h`.
 ### Arguments
 - hvb comp
 - hvp indiv
