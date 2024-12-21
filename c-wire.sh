@@ -144,7 +144,7 @@ cp $FILEPATH input
 FILEPATH="input/$1"
 
 # Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
-if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
+if [ -n "$POWER" ] && [ $POWER -le 0 ]  || [[ ! "$power_plant_id" =~ ^[0-9]+$ ]]; then
     # If POWER is set and less than or equal to 0, print an error message
     echo "Parameter value is incorrect!"
     # Display the contents of HelpShell.txt for further instructions or help
