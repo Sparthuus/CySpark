@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
 clear
@@ -63,18 +63,18 @@ if ! [ -x "./codeC/exec" ]; then
     echo "error exec doesn't exist !"
     echo
     cd codeC
-	make
-	cd ..
+    make
+    cd ..
 fi
 
 
 # store directory
 
-FILEPATH="$1" 
+FILEPATH="$1"
 COMMAND="$@"
 STATION=$2
 CONSUMER=$3
-POWER=$4 
+POWER=$4
 
 #Convert into lowercase caracters
 STATION=${STATION,,}
@@ -121,8 +121,21 @@ if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) 
     exit 7
 fi
 
+# Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
+if [ -n "$POWER" ] && [ $POWER -le 0 ]; then
+    # If POWER is set and less than or equal to 0, print an error message
+    echo "Parameter value is incorrect!"
+    # Display the contents of HelpShell.txt for further instructions or help
+    cat HelpShell.txt
+    # Print a blank line
+    echo
+    # Exit the script with status code 8 to indicate an invalid POWER value
+    exit 8
+fi
+
 # Print a blank line to separate the output
 echo
+
 # If all checks pass, print that all parameters are valid
 echo "All parameters are valid."
 
@@ -154,47 +167,47 @@ if [ -z "$POWER" ]; then
    START_SEC=$(date +%s)         # Time in seconds
     START_NANO=$(date +%N)        # Time in nanoseconds
     
-	case "$STATION" in 
-		'hvb') 
-			
-			touch "hvb_comp.csv"
-			echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hvb_comp.csv
-			;;
-		'hva') 
-			touch "hva_comp.csv"
-			echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp.csv
-			cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp.csv
-			;;
-		*) 
-			case $CONSUMER in  
-				indiv) 
-					touch "lv_indiv.csv"
-					echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_indiv.csv
-					;;
-				comp) 
-					touch "lv_comp.csv"
-					echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_comp.csv
-					;;
-				*) 
+    case "$STATION" in
+        'hvb')
+            
+            touch "hvb_comp.csv"
+            echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp.csv
+            cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9]+;-;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hvb_comp.csv
+            ;;
+        'hva')
+            touch "hva_comp.csv"
+            echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp.csv
+            cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp.csv
+            ;;
+        *)
+            case $CONSUMER in
+                indiv)
+                    touch "lv_indiv.csv"
+                    echo "Station: lv Capacité: Comsommateurs (individuel) " > lv_indiv.csv
+                    cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_indiv.csv
+                    ;;
+                comp)
+                    touch "lv_comp.csv"
+                    echo "Station: lv Capacité: Comsommateurs (entreprises) " > lv_comp.csv
+                    cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_comp.csv
+                    ;;
+                *)
                     temp="lv_all.csv"
-					echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
-    				touch "$temp" 
-					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec  >> "$temp"
-					awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax.csv 
-					awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax.csv 
-					
-					 
+                    echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
+                    touch "$temp"
+                    cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec  >> "$temp"
+                    awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax.csv
+                    awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax.csv
+                    
+                     
  
                        
-					
-					;;
-			esac
-			;;
-	esac
-	END_SEC=$(date +%s)           # Time in seconds at the end
+                    
+                    ;;
+            esac
+            ;;
+    esac
+    END_SEC=$(date +%s)           # Time in seconds at the end
     END_NANO=$(date +%N)          # Nanoseconds at the end
 
     # Calculate the duration in seconds with correct precision
@@ -213,47 +226,47 @@ if [ -z "$POWER" ]; then
     echo "Processing time: $DURATION seconds"
 
  
-	
+    
 else
     START_SEC=$(date +%s)         # Time in seconds
     START_NANO=$(date +%N)        # Time in nanoseconds
 
-	case "$STATION" in 
-	        'hvb') 
-				touch "hvb_comp_$POWER.csv"   
-				echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
-		        ;;
-	        'hva') 
-	 			touch "hva_comp_$POWER.csv"
-				echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
-		        cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp_$POWER.csv
-		        ;;
-	        *)     
-				case $CONSUMER in  
-                                'indiv') 
-									touch "lv_indiv_$POWER.csv"
-									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv 
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
-									;;
-	                       		 'comp')
-									touch "lv_comp_$POWER.csv"
-									echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
-			 						cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_comp_$POWER.csv
-									;;
-                                *) 
+    case "$STATION" in
+            'hvb')
+                touch "hvb_comp_$POWER.csv"
+                echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
+                cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
+                ;;
+            'hva')
+                 touch "hva_comp_$POWER.csv"
+                echo "Station: hva Capacité: Comsommateurs (entreprises) " > hva_comp_$POWER.csv
+                cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9-]+;[0-9]+;-;" | tr '-' '0' | cut -d ';' -f 3,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hva_comp_$POWER.csv
+                ;;
+            *)
+                case $CONSUMER in
+                                'indiv')
+                                    touch "lv_indiv_$POWER.csv"
+                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
+                                    cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
+                                    ;;
+                                    'comp')
+                                    touch "lv_comp_$POWER.csv"
+                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
+                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_comp_$POWER.csv
+                                    ;;
+                                *)
                                     var="lv_all_$POWER.csv"
-									echo "Station: lv Capacité: Comsommateurs (tous)) " > "$var"
-									touch "$var" | mv "$var" temp 
-									cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;"| tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec>> "$var"
-									awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$var" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax_$POWER.csv 
-					                awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$var" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax_$POWER.csv 
-    								;;
+                                    echo "Station: lv Capacité: Comsommateurs (tous)) " > "$var"
+                                    touch "$var" | mv "$var" temp
+                                    cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;"| tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec>> "$var"
+                                    awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$var" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax_$POWER.csv
+                                    awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$var" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax_$POWER.csv
+                                    ;;
                        esac
-		        
-		        ;;
-	esac
-	END_SEC=$(date +%s)           # Time in seconds at the end
+                
+                ;;
+    esac
+    END_SEC=$(date +%s)           # Time in seconds at the end
     END_NANO=$(date +%N)          # Nanoseconds at the end
 
     # Calculate the duration in seconds with correct precision
