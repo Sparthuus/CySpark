@@ -6,7 +6,6 @@ PC = pc/main.c pc/avl.c
 OBJ = $(PC:.c=.o)
 
 TARGET = exec
-
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
