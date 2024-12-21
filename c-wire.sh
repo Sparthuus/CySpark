@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 # if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
-
+clear
 cd codeC
 make
 cd ..
