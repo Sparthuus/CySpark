@@ -1,10 +1,7 @@
 #!/bin/bash 
-# make for lv all special treat at (the end 10 highest (capcity - load) and 10 lowest do the same but at the end sort by capacity or load 
 #do we need to add helpshell at every error
-# i need to add the csv name file and put that in the temp directory for lv only
-
 # if to file hvb comp with diferant data make sur to move the first on your personal desktup ( add to read me)
-#temp should be cleared at the start
+
 make
 
 bash codeShell/intro.sh
