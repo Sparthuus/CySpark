@@ -8,6 +8,7 @@ cd ..
 
 bash codeShell/intro.sh
           
+
 # Iterate over all the arguments passed to the script
 for arg in "$@"; do
     # Check if the current argument matches "-h"
@@ -38,6 +39,9 @@ if ! [ -d input ] ; then
     # If 'input' does not exist, create it
     mkdir input
 fi
+
+
+
 
 # Check if the file specified by the first command-line argument ($1) does not exist
 if ! [ -f "$1" ] ; then
@@ -243,12 +247,12 @@ else
                                 'indiv')
                                     touch "lv_indiv_$POWER.csv"
                                     echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_indiv_$POWER.csv
-                                    cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_indiv_$POWER.csv
+                                    cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;-;[0-9-]+" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> lv_indiv_$POWER.csv
                                     ;;
                                     'comp')
                                     touch "lv_comp_$POWER.csv"
                                     echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
-                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec | sort -t -k2 -n >> lv_comp_$POWER.csv
+                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec |  sort -t ':' -k2 -n >> lv_comp_$POWER.csv
                                     ;;
                                 *)
                                     var="lv_all_$POWER.csv"
