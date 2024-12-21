@@ -225,7 +225,7 @@ else
             'hvb')
                 touch "hvb_comp_$POWER.csv"
                 echo "Station: hvb Capacité: Comsommateurs (entreprises) " > hvb_comp_$POWER.csv
-                cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
+                cat "$FILEPATH" | tail -n+2 | grep -E "^$POWER;[0-9]+;-+;-;" | tr '-' '0' | cut -d ';' -f 2,7,8 | ./codeC/exec | sort -t ':' -k2 -n >> hvb_comp_$POWER.csv
                 ;;
             'hva')
                  touch "hva_comp_$POWER.csv"
