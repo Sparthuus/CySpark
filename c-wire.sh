@@ -121,16 +121,14 @@ if [[ "$STATION" == "hvb" && ( "$CONSUMER" == "indiv" || "$CONSUMER" == "all" ) 
     exit 7
 fi
 
-# Check if the variable POWER is set (non-empty) and its value is less than or equal to 0
-if [ -n "$POWER" ] && [ $POWER -le 0 ] || [[ ! "$POWER" =~ ^[0-9]+$ ]]; then
-    # If POWER is set and less than or equal to 0, print an error message
-    echo "4th parameter is incorrect!"
-    # Display the contents of HelpShell.txt for further instructions or help
-    cat HelpShell.txt
-    # Print a blank line
-    echo
-    # Exit the script with status code 8 to indicate an invalid POWER value
-    exit 8
+if [ -n "$POWER" ]; then
+    # Check if POWER is not an integer or is <= 0
+    if ! [[ "$POWER" =~ ^-?[0-9]+$ ]] || [ "$POWER" -le 0 ]; then
+        echo "4th parameter is incorrect!"
+        cat HelpShell.txt
+        echo
+        exit 8
+    fi
 fi
 
 # Print a blank line to separate the output
