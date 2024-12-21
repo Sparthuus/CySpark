@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 AVL* createAVL(int i, int c, int l){ //Function to create AVL
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
@@ -29,6 +30,7 @@ int min3(int a, int b, int c){
 int max3(int a, int b, int c){
     return max2(a, max2(b, c));
 }
+
 
 AVL* rotateLeft(AVL* pRoot){
     if(pRoot==NULL || pRoot->pRight == NULL){
