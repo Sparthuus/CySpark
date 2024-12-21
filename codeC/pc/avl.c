@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-AVL* createAVL(int i, int c, int l){ //Function to create AVL
+AVL* createAVL(int i, long long c, long long l){ //Function to create AVL
     AVL* pNew = malloc(sizeof(AVL));
     if(pNew == NULL){
         exit(10);
@@ -130,7 +130,7 @@ int searchAVL(AVL* pRoot, int i){
     }
 }
 
-AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
+AVL* insertAVL(AVL* pRoot, int i, long long c, long long l, long long *h){
     if(pRoot == NULL){
         // insert
         *h = 1;
@@ -164,7 +164,7 @@ AVL* insertAVL(AVL* pRoot, int i, int c, int l, int *h){
 void infix(AVL* pRoot){ 
     if(pRoot != NULL){
         infix(pRoot->pLeft);
-        printf("%d:%d:%d\n", pRoot->id, pRoot->capacity, pRoot->load); //Display AVL in infix order
+        printf("%lld:%lld:%lld\n", pRoot->id, pRoot->capacity, pRoot->load); //Display AVL in infix order
         infix(pRoot->pRight);
     }
 }
