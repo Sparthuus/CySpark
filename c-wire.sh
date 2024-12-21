@@ -251,8 +251,8 @@ else
                                     ;;
                                     'comp')
                                     touch "lv_comp_$POWER.csv"
-                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv
-                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;-;[0-9]+;[0-9]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec |  sort -t ':' -k2 -n >> lv_comp_$POWER.csv
+                                    echo "Station: lv Capacité: Comsommateurs (individuels) " > lv_comp_$POWER.csv # grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;[0-9-]+;-;"
+                                     cat $FILEPATH | tail -n+2 | grep -E "^$POWER;-;[0-9-]+;[0-9]+;[0-9-]+;-;" | tr - 0 | cut -d ';' -f 4,7,8 | ./codeC/exec |  sort -t ':' -k2 -n >> lv_comp_$POWER.csv
                                     ;;
                                 *)
                                     var="lv_all_$POWER.csv"
