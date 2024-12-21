@@ -1,22 +1,30 @@
 # Cy Spark ⭐
-Welcome to our project named **"Cy Spark"**!
+Welcome to our project named **"Cy Spark"**! 
 Project of Mathieu, Jude and Habilan. Year 2024-2025
 
 ## Help
-If at some point, you need help, the command `-h` is here for you.
+If at some point, you need help, you can display the help manual with the command : <br>
+```
+-h
+```
 
 ## Instructions 
-Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hvb indiv`
+Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hvb indiv`<br>
 Before, make sure to use Linux or to have downloaded a Linux terminal
 
-`<Station Type>`: Type of station (hva, hvb, lv).
-`<Consumer Type>`: Type of consumer (comp, indiv, all). As was said above : hva and hvb stations only works with comp consumers.
-`[Power Plant ID]`: (Optional) ID of the power plant, must be a positive number.
+`<Station Type>`: Type of station (hva, hvb, lv).<br>
+`<Consumer Type>`: Type of consumer (comp, indiv, all). As was said above : hva and hvb stations only works with comp consumers.<br>
+`[Power Plant ID]`: (Optional) ID of the power plant, must be a positive number.<br>
 
 ### Instructions to compil and use of the programm :
-- In the `terminal` : 
+- In the `terminal` :
+``` 
 bash c-wire.sh c-wire_v25.dat <station type> <consumer type>
+```
 Example :
+```
+bash c-wire.sh c-wire_v25.dat hvb comp
+```
 
 ### Cleaning up
 Our programm automatically clean after utilization (`make clean` command) through `c-wire.h`.
