@@ -1,7 +1,6 @@
 #ifndef AVL_H
 #define AVL_H
 
-
 typedef struct _avl {
     int id;
     int load;
