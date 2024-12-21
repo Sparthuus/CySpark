@@ -16,7 +16,7 @@ Before, make sure to use Linux or to have downloaded a Linux terminal
 `<Consumer Type>`: Type of consumer (comp, indiv, all). As was said above : hva and hvb stations only works with comp consumers.<br>
 `[Power Plant ID]`: (Optional) ID of the power plant, must be a positive number.<br>
 
-### - Instructions to compil and use of the programm :
+### - Instructions to compil and use of the program :
 - In the `terminal` :
 ``` 
 bash c-wire.sh c-wire_v25.dat <station type> <consumer type>
