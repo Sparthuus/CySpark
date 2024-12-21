@@ -181,7 +181,7 @@ if [ -z "$POWER" ]; then
 				*) 
                     temp="lv_all.csv"
 					echo "Station: lv Capacité: Comsommateurs (tous) " > "$temp"
-    				touch "$temp" | mv "$temp" temp
+    				touch "$temp" 
 					cat "$FILEPATH" | tail -n+2 | grep -E "^[0-9]+;-;[0-9-]+;[0-9]+;" | tr '-' '0' | cut -d ';' -f 4,7,8 | ./codeC/exec  >> "$temp"
 					awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  head -n 10 | cut -d ':' -f 1,2,3 > lv_all_minmax.csv 
 					awk -F ':' '{print $1 ":" $2 ":" $3 ":" ($3 - $2)}' "$temp" | sort -t ':' -k4 -n |  tail -n 10 | cut -d ':' -f 1,2,3 >> lv_all_minmax.csv 
