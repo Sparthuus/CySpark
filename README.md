@@ -18,11 +18,11 @@ Before, make sure to use Linux or to have downloaded a Linux terminal
 
 ### - Instructions to compil and use of the program :
 - In the `terminal` :
-``` 
+```sh 
 bash c-wire.sh c-wire_v25.dat <station type> <consumer type>
 ```
 Example :
-```
+```sh
 bash c-wire.sh c-wire_v25.dat hvb comp
 ```
 
