@@ -4,7 +4,7 @@ Project of Mathieu, Jude and Habilan. Year 2024-2025<br>
 
 ## ⚠️Warning
 Our program **may** take time to load the data (Between 20-45 seconds). We are sorry for the waiting time.<br>
-Don't forget to save the result file before the next use, It will be deleted after. 
+Be careful, if you use the same command twice, the program will erase the first csv by the new one. 
 
 ## ❔Help
 If at some point, you need help, you can display the help manual with the command : <br>
