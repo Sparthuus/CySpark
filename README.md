@@ -13,7 +13,7 @@ If at some point, you need help, you can display the help manual with the comman
 ```
 
 ## 📑Instructions 
-Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hvb indiv`<br>
+Options forbidden : `hvb all` ; `hvb indiv` ; `hva all` ; `hva indiv`<br>
 Before, make sure to use Linux or to have downloaded a Linux terminal
 
 `<Station Type>`: Type of station (hva, hvb, lv).<br>
