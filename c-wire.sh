@@ -110,7 +110,7 @@ FILEPATH="input/$1"
 if [ -z "$POWER" ]; then
  START_TIME=$(date +%s)
    
-# Thz switch case checks depending on the values of the STATION and CONSUMER variables, it generates different CSV files that summarize consumer capacity data.
+# Thz switch case checks depending on the values of the STATION and CONSUMER variables => generates different CSV files that summarize consumer capacity data.
     case "$STATION" in
         'hvb')
             
@@ -152,7 +152,7 @@ if [ -z "$POWER" ]; then
 
      
 else
-    START_TIME=$(date +%s)         # Time in seconds
+    START_TIME=$(date +%s)   # Time in seconds
     
     case "$STATION" in
             'hvb')
